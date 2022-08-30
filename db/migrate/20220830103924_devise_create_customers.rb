@@ -34,10 +34,36 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
 
 
       t.timestamps null: false
+
+      # 姓を保存するカラム
+      t.string :last_name
+
+      # 名を保存するカラム
+      t.string :first_name
+
+      # 姓カナを保存するカラム
+      t.string :last_name_kana
+
+      # 名カナを保存するカラム
+      t.string :first_name_kana
+
+      # 郵便番号を保存するカラム
+      t.string :postal_code
+
+      # 住所を保存するカラム
+      t.string :address
+
+      # 電話番号を保存するカラム
+      t.string :telephone_number
+
     end
 
     add_index :customers, :email,                unique: true
     add_index :customers, :reset_password_token, unique: true
+
+    # 退会ステータスのカラム
+    add_column :customers, :is_deleted, :boolean, default: true, null: false
+
     # add_index :customers, :confirmation_token,   unique: true
     # add_index :customers, :unlock_token,         unique: true
   end
