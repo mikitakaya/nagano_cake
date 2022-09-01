@@ -1,12 +1,8 @@
 Rails.application.routes.draw do
 
-  namespace :public do
-    get 'orders/new'
-    post 'orders/confirm'
-    get 'orders/complete'
-    get 'orders/index'
-    get 'orders/show'
-  end
+  post 'orders/confirm'
+  get 'orders/complete'
+  resources :orders, only: [:new, :index, :show, :create]
 
   namespace :public do
     get 'cart_items/index'
