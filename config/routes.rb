@@ -1,13 +1,10 @@
 Rails.application.routes.draw do
+  # public/homes
+  root to: 'homes#top'
+  get 'about' => "homes#about", as: "about"
 
-  # public/orders
-  post 'orders/confirm' => "orders#confirm", as: "confirm"
-  get 'orders/complete' => "orders#complete", as: "complete"
-  resources :orders, only: [:new, :index, :show, :create]
-
-  # public/cart_items
-  delete 'cart_items/destroy_all' => "cart_items#destroy_all", as: "destroy_all"
-  resources :cart_items, only: [:index, :update, :destroy, :create]
+  # public/items
+  resources :items, only: [:index, :show]
 
   # public/customers
   get 'customers/my_page' => 'customers#show', as: "show"
@@ -16,12 +13,17 @@ Rails.application.routes.draw do
   get 'customers/unsubscribe' => "customers#unsubscribe", as: "unsubscribe"
   patch 'customers/withdraw' => "customers#withdraw", as: "withdraw"
 
-  # public/items
-  resources :items, only: [:index, :show]
+  # public/cart_items
+  delete 'cart_items/destroy_all' => "cart_items#destroy_all", as: "destroy_all"
+  resources :cart_items, only: [:index, :update, :destroy, :create]
 
-  # public/homes
-  root to: 'homes#top'
-  get 'about' => "homes#about", as: "about"
+  # public/orders
+  post 'orders/confirm' => "orders#confirm", as: "confirm"
+  get 'orders/complete' => "orders#complete", as: "complete"
+  resources :orders, only: [:new, :index, :show, :create]
+
+  # public/addresses
+  resources :addresses, only: [:index, :edit, :create, :update, :destroy]
 
   # 顧客用
   # URL /customers/sign_in ...
