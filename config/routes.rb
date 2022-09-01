@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
 
+  # public/orders
   post 'orders/confirm'
   get 'orders/complete'
   resources :orders, only: [:new, :index, :show, :create]
 
-  namespace :public do
-    get 'cart_items/index'
-  end
+  # public/cart_items
+  delete 'cart_items/destroy_all'
+  resources :cart_items, only: [:index, :update, :destroy, :create]
 
   namespace :public do
     get 'customers/show'
