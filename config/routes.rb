@@ -16,10 +16,8 @@ Rails.application.routes.draw do
   get 'customers/unsubscribe'
   patch 'customers/withdraw'
 
-  namespace :public do
-    get 'items/index'
-    get 'items/show'
-  end
+  # public/items
+  resources :items, only: [:index, :show]
 
   namespace :public do
     get 'homes/top'
