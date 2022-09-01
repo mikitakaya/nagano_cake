@@ -9,11 +9,12 @@ Rails.application.routes.draw do
   delete 'cart_items/destroy_all'
   resources :cart_items, only: [:index, :update, :destroy, :create]
 
-  namespace :public do
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/unsubscribe'
-  end
+  # public/customers
+  get 'customers/my_page' => 'customers#show'
+  get 'customers/information/edit' => 'customers#edit'
+  patch 'customers/information' => 'customers#update'
+  get 'customers/unsubscribe'
+  patch 'customers/withdraw'
 
   namespace :public do
     get 'items/index'
