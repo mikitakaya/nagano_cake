@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     # admin/customers
     resources :customers, only: [:index, :show, :edit, :update]
 
+    # admin/orders
+    resources :orders, only: [:show, :update]
   end
 
   # 顧客用
