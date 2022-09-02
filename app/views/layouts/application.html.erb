@@ -38,15 +38,49 @@
 
        <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-
+        <% if admin_signed_in? %>
+         <% if request.fullpath.include? "/admin" %>
+          //admin側のheaderを返す
+         <% else %>
+         // user側のheaderを返す
+         <% end %>
+        <% elsif customer_signed_in? %>
+   // userログイン状態の際に、表示したいheaderのメニューを記載
+        <% else %>
+        <!-- ここからadminもuserもログアウト状態なら表示する内容 -->
          <li>
-          <%= link_to '/about', class: "nav-link text-light" do %>
-           <i class="fa-solid fa-cookie-bite"></i>
+          <%= link_to about_path, class: "nav-link" do %>
+           <i class="fa-solid fa-mug-hot"></i>
            About
           <% end %>
          </li>
+
+         <li>
+          <%= link_to items_path, class: "nav-link" do %>
+           <i class="fa-solid fa-cake-candles"></i>
+           商品一覧
+          <% end %>
+         </li>
+
+         <li>
+          <%= link_to new_customer_registration_path, class: "nav-link" do %>
+           <i class="fas fa-user-plus"></i>
+           新規登録
+          <% end %>
+         </li>
+
+         <li>
+          <%= link_to new_customer_session_path, class: "nav-link" do %>
+           <i class="fas fa-sign-in-alt"></i>
+           ログイン
+          <% end %>
+         </li>
+
+         <!-- ここまでadminもuserもログアウト状態なら表示する内容 -->
+        <% end %>
         </ul>
        </div>
+
       </div>
      </nav>
 
