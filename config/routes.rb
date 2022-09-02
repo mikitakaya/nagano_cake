@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     # admin/genres
     resources :genres, only: [:index, :create, :edit, :update]
 
+    # admin/customers
+    resources :customers, only: [:index, :show, :edit, :update]
+
   end
 
   # 顧客用
