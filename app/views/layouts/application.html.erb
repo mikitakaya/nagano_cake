@@ -15,12 +15,36 @@
     <link rel="stylesheet" href="style.css" />
   </head>
 
+  <style>
+   .bkcolor {
+    background-color: #dbafbd;
+   }
+  </style>
+
   <body>
     <!-- ここからヘッダー -->
-    <header>
+    <header class="bkcolor">
+     <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+       <!-- アイコン -->
+       <%= link_to '/', class: "navbar-brand" do %>
+        <%= image_tag "logo(2).png", size: "160x60" %>
+       <% end %>
+
+       <!-- ナビゲーションバー -->
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+       </button>
+
+       <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+
+        </ul>
+       </div>
+      </div>
+     </nav>
 
     </header>
-
     <!-- ここまでヘッダー -->
 
     <%= yield %>
