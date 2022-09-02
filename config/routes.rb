@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'items/index'
-    get 'items/new'
-    get 'items/show'
-    get 'items/edit'
-  end
+  # 管理者用
   namespace :admin do
     # admin/homes
     get 'admin' => "homes#top", as: "top"
+
+    # admin/items
+    resources :items, only: [:index, :new, :create, :show, :edit, :update]
+
   end
 
+  # 顧客用
   scope module: :public do
     # public/homes
     root to: 'homes#top'
