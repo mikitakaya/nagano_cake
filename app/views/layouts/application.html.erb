@@ -28,7 +28,7 @@
       <div class="container">
        <!-- アイコン -->
        <%= link_to '/', class: "navbar-brand" do %>
-        <%= image_tag "logo(2).png", size: "160x60" %>
+        <%= image_tag "logo(2).png", size: "90x30" %>
        <% end %>
 
        <!-- ナビゲーションバー -->
@@ -39,6 +39,12 @@
        <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
 
+         <li>
+          <%= link_to '/about', class: "nav-link text-light" do %>
+           <i class="fa-solid fa-cookie-bite"></i>
+           About
+          <% end %>
+         </li>
         </ul>
        </div>
       </div>
