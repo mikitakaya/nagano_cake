@@ -1,22 +1,4 @@
 Rails.application.routes.draw do
-  # 管理者用
-  namespace :admin do
-    # admin/homes
-    get '/' => "homes#top", as: "top"
-
-    # admin/items
-    resources :items, only: [:index, :new, :create, :show, :edit, :update]
-
-    # admin/genres
-    resources :genres, only: [:index, :create, :edit, :update]
-
-    # admin/customers
-    resources :customers, only: [:index, :show, :edit, :update]
-
-    # admin/orders
-    resources :orders, only: [:show, :update]
-  end
-
   # 顧客用
   scope module: :public do
     # public/homes
@@ -44,6 +26,27 @@ Rails.application.routes.draw do
 
     # public/addresses
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+  end
+
+  # 管理者用
+  namespace :admin do
+    # admin/homes
+    get '/' => "homes#top", as: "top"
+
+    # admin/items
+    resources :items, only: [:index, :new, :create, :show, :edit, :update]
+
+    # admin/genres
+    resources :genres, only: [:index, :create, :edit, :update]
+
+    # admin/customers
+    resources :customers, only: [:index, :show, :edit, :update]
+
+    # admin/orders
+    resources :orders, only: [:show, :update]
+
+    # admin/order_details
+    resources :order_details, only: [:update]
   end
 
   # 顧客用
