@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'genres/index'
+    get 'genres/edit'
+  end
   # 管理者用
   namespace :admin do
     # admin/homes
@@ -6,6 +10,9 @@ Rails.application.routes.draw do
 
     # admin/items
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
+
+    # admin/genres
+    resources :genres, only: [:index, :create, :edit, :update]
 
   end
 
