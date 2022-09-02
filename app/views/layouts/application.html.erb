@@ -38,46 +38,119 @@
 
        <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
+
         <% if admin_signed_in? %>
-         <% if request.fullpath.include? "/admin" %>
-          //admin側のheaderを返す
-         <% else %>
-         // user側のheaderを返す
-         <% end %>
-        <% elsif customer_signed_in? %>
-   // userログイン状態の際に、表示したいheaderのメニューを記載
-        <% else %>
-        <!-- ここからadminもuserもログアウト状態なら表示する内容 -->
+         <!-- ここから管理者用のヘッダー -->
+         <!-- ここから商品一覧ボタン -->
          <li>
-          <%= link_to about_path, class: "nav-link" do %>
-           <i class="fa-solid fa-mug-hot"></i>
-           About
+          <%= link_to "商品一覧", admin_items_path, class: "nav-link" %>
+         </li>
+         <!-- ここまで商品一覧ボタン -->
+
+         <!-- ここから会員一覧ボタン -->
+         <li>
+          <%= link_to "会員一覧", admin_customers_path, class: "nav-link" %>
+         </li>
+         <!-- ここまで会員一覧ボタン -->
+
+         <!-- ここから注文履歴一覧ボタン -->
+         <li>
+          <%= link_to "注文履歴一覧", orders_path(@orders), class: "nav-link" %>
+         </li>
+         <!-- ここまで注文履歴一覧ボタン -->
+
+         <!-- ここからジャンル一覧ボタン -->
+          <li>
+           <%= link_to "ジャンル一覧", admin_genres_path, class: "nav-link" %>
+          </li>
+         <!-- ここまでジャンル一覧ボタン -->
+
+         <!-- ここからログアウトボタン -->
+         <li>
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
+         </li>
+         <!-- ここまでログアウトボタン -->
+         <!-- ここまで管理者用のヘッダー -->
+
+        <% elsif customer_signed_in? %>
+         <!-- ここから顧客用のヘッダー -->
+         <!-- ここからマイページボタン -->
+         <li>
+          <%= link_to show_path, class: "nav-link" do %>
+           <i class="fa-solid fa-circle-user"></i>
+           マイページ
           <% end %>
          </li>
+         <!-- ここまでマイページボタン -->
 
+         <!-- ここから商品一覧ボタン-->
          <li>
           <%= link_to items_path, class: "nav-link" do %>
            <i class="fa-solid fa-cake-candles"></i>
            商品一覧
           <% end %>
          </li>
+         <!-- ここまで商品一覧ボタン-->
 
+         <!-- ここからカートボタン -->
+         <li>
+          <%= link_to cart_items_path, class: "nav-link" do %>
+           <i class="fa-solid fa-cart-shopping"></i>
+           カート
+          <% end %>
+         </li>
+         <!-- ここまでカートボタン -->
+
+         <!-- ここからログアウトボタン -->
+         <li>
+          <%= link_to destroy_customer_session_path, method: :delete, class: "nav-link" do %>
+           <i class="fas fa-sign-out-alt"></i>
+           ログアウト
+          <% end %>
+         </li>
+        <!-- ここまでログアウトボタン -->
+        <!-- ここまで顧客用のヘッダー -->
+
+        <!-- ここから管理者も顧客もログアウト状態用のヘッダー -->
+        <% else %>
+         <!-- ここからAboutボタン -->
+         <li>
+          <%= link_to about_path, class: "nav-link" do %>
+           <i class="fa-solid fa-mug-hot"></i>
+           About
+          <% end %>
+         </li>
+         <!-- ここまでAboutボタン -->
+
+         <!-- ここから商品一覧ボタン -->
+         <li>
+          <%= link_to items_path, class: "nav-link" do %>
+           <i class="fa-solid fa-cake-candles"></i>
+           商品一覧
+          <% end %>
+         </li>
+         <!-- ここまで商品一覧ボタン -->
+
+         <!-- ここから新規登録ボタン -->
          <li>
           <%= link_to new_customer_registration_path, class: "nav-link" do %>
            <i class="fas fa-user-plus"></i>
            新規登録
           <% end %>
          </li>
+         <!-- ここまで新規登録ボタン -->
 
+         <!-- ここからログインボタン -->
          <li>
           <%= link_to new_customer_session_path, class: "nav-link" do %>
            <i class="fas fa-sign-in-alt"></i>
            ログイン
           <% end %>
          </li>
-
-         <!-- ここまでadminもuserもログアウト状態なら表示する内容 -->
+         <!-- ここまでログインボタン -->
         <% end %>
+        <!-- ここまで管理者も顧客もログアウト状態用のヘッダー -->
+
         </ul>
        </div>
 

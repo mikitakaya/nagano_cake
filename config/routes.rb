@@ -59,7 +59,9 @@ Rails.application.routes.draw do
   # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
+    registrations: "admin/registrations",
     sessions: "admin/sessions"
   }
+  # registrations: "admin/registrations"は完成したら消す
 
 end
