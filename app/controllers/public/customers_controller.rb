@@ -5,10 +5,10 @@ class Public::CustomersController < ApplicationController
   def edit
   end
 
-  def unsubscribe
+  def update
   end
 
-  def update
+  def unsubscribe
   end
 
   def withdraw

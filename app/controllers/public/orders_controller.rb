@@ -2,12 +2,6 @@ class Public::OrdersController < ApplicationController
   def new
   end
 
-  def confirm
-  end
-
-  def complete
-  end
-
   def index
   end
 
@@ -15,6 +9,12 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
+  end
+
+  def confirm
+  end
+
+  def complete
   end
 
 end
