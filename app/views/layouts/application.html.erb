@@ -6,11 +6,23 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <!-- FontAwesomeの読み込み -->
+    <script src="https://kit.fontawesome.com/6eb889a2d4.js" crossorigin="anonymous"></script>
+    <!-- CSSファイルの読み込み -->
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
+    <!-- ここからヘッダー -->
+    <header>
+
+    </header>
+
+    <!-- ここまでヘッダー -->
+
     <%= yield %>
   </body>
 </html>
