@@ -16,14 +16,22 @@
   </head>
 
   <style>
-   .bkcolor {
+   .color {
     background-color: #dbafbd;
+   }
+
+   .bkcolor {
+    background-color: #f6ebee;
+   }
+
+   .text {
+    color : rgba(0, 0, 0, 0.6);
    }
   </style>
 
-  <body>
+  <body class="bkcolor text">
     <!-- ここからヘッダー -->
-    <header class="bkcolor">
+    <header class="color">
      <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container">
        <!-- アイコン -->
@@ -39,8 +47,10 @@
        <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
 
+        <!-- 条件1：admin（管理者）はログインしていますか？ -->
         <% if admin_signed_in? %>
-         <!-- ここから管理者用のヘッダー -->
+
+         <!-- trueの場合、ここから管理者用のヘッダー -->
          <!-- ここから商品一覧ボタン -->
          <li>
           <%= link_to "商品一覧", admin_items_path, class: "nav-link" %>
@@ -72,8 +82,10 @@
          <!-- ここまでログアウトボタン -->
          <!-- ここまで管理者用のヘッダー -->
 
+        <!-- 条件1がfalse、条件2：customer（顧客）はログインしていますか？ -->
         <% elsif customer_signed_in? %>
-         <!-- ここから顧客用のヘッダー -->
+
+         <!-- trueの場合、ここから顧客用のヘッダー -->
          <!-- ここからマイページボタン -->
          <li>
           <%= link_to show_path, class: "nav-link" do %>
@@ -111,8 +123,10 @@
         <!-- ここまでログアウトボタン -->
         <!-- ここまで顧客用のヘッダー -->
 
-        <!-- ここから管理者も顧客もログアウト状態用のヘッダー -->
+        <!-- 条件1、2が全てfalseの場合、以下処理を行う -->
         <% else %>
+
+         <!-- ここから管理者も顧客もログアウト状態用のヘッダー -->
          <!-- ここからAboutボタン -->
          <li>
           <%= link_to about_path, class: "nav-link" do %>
@@ -148,6 +162,7 @@
           <% end %>
          </li>
          <!-- ここまでログインボタン -->
+
         <% end %>
         <!-- ここまで管理者も顧客もログアウト状態用のヘッダー -->
 
@@ -159,7 +174,11 @@
 
     </header>
     <!-- ここまでヘッダー -->
-
-    <%= yield %>
+    <main>
+     <p id="notice">
+      <%= flash[:notice] %>
+     </p>
+     <%= yield %>
+    </main>
   </body>
 </html>
