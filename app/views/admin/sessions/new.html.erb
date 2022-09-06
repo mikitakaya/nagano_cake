@@ -1,33 +1,36 @@
 <div class="container">
  <div class="row">
-  <div class="col-11">
-   <h2>管理者ログイン</h2>
-  </div>
-
   <style>
    label {
     width: 150px;
     padding-right: 10px;
    }
 
-   .actions {
-    padding-left: 155px;
+   span {
+    background-color: #e6dcdf;
+    display: inline;
    }
   </style>
 
-  <div class="mx-auto col-11">
+  <div class="col-11">
+   <h2 style="padding: 10px 0;">
+    <span>管理者ログイン</span>
+   </h2>
+  </div>
+
+  <div class="mx-auto", style="padding: 0 20% 0 0">
    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
      <label for="admin_email">メールアドレス</label>
-     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+     <%= f.email_field :email, autofocus: true, autocomplete: "email", size: "35" %>
     </div>
 
     <div class="field">
      <label for="admin_password">パスワード</label>
-     <%= f.password_field :password, autocomplete: "current-password" %>
+     <%= f.password_field :password, autocomplete: "current-password", size: "35" %>
     </div>
 
-    <div class="actions">
+    <div class="actions" style="padding: 20px 0 0 155px;">
      <%= f.submit "ログイン", class: "btn btn-primary" %>
     </div>
    <% end %>
