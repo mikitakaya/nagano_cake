@@ -76,4 +76,5 @@ Rails.application.configure do
 
   config.active_job.queue_adapter = :inline
   config.hosts.clear
+  config.web_console.allowed_ips = '0.0.0.0/0'
 end
