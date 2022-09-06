@@ -12,13 +12,13 @@
    }
   </style>
 
-  <div class="col-11">
+  <div class="col-12 offset-1">
    <h2 style="padding: 10px 0;">
     <span>管理者ログイン</span>
    </h2>
   </div>
 
-  <div class="mx-auto", style="padding: 0 20% 0 0">
+  <div class="mx-auto", style="padding: 0 20% 0 0;">
    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
      <label for="admin_email">メールアドレス</label>
