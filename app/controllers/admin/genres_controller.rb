@@ -1,6 +1,6 @@
 class Admin::GenresController < ApplicationController
   def index
-   # Viewのform_withへ渡すための「空のモデル」を生成する。
+   # Viewのform_withへ渡すための「空のモデル」を生成する
    @genre = Genre.new
    # 全てのジャンルデータを取得する
    @genres = Genre.all
