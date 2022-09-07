@@ -2,19 +2,39 @@
  <div class="row">
   <style>
    label {
-    width: 120px;
+    width: 140px;
    }
 
    select, input, textarea {
-    width: 60%;
+    width: 50%;
    }
 
-   textarea {
-    height : 20%;
+   element.style {
+    height: 200px;
    }
 
    input[type=radio] {
     width: auto;
+   }
+
+   text {
+    padding-right: 15%;
+   }
+
+   text:last-child {
+    padding: 0;
+   }
+
+   .field {
+    padding-bottom: 8px;
+   }
+
+   .btn:not(:disabled):not(.disabled) {
+    width: auto;
+   }
+
+   .input_wrap {
+    margin-left: 40%;
    }
   </style>
 
@@ -26,7 +46,7 @@
    </h3>
   </div>
 
-  <div class="col-lg-8 col-md-9 mx-auto">
+  <div class="mx-auto col-lg-8 col-md-10">
    <%= form_with model: @item, url: new_admin_item_path, method: :get do |f| %>
     <div class="field">
      <label for="admin_item_image">商品画像</label>
@@ -40,7 +60,7 @@
 
     <div class="field">
      <label for="admin_item_introduction">商品説明</label>
-     <%= f.text_area :introduction %>
+     <%= f.text_area :introduction, size: "1x8" %>
     </div>
 
     <div class="field">
@@ -55,7 +75,12 @@
 
     <div class="field">
      <label for="admin_item_is_active">販売ステータス</label>
-     <%= f.radio_button :is_active, "販売中" %>販売中 <%= f.radio_button :is_active, "販売停止中" %>販売停止中
+     <%= f.radio_button :is_active, "販売中" %><text>販売中</text>
+     <%= f.radio_button :is_active, "販売停止中" %><text>販売停止中</text>
+    </div>
+
+    <div class="input_wrap">
+     <%= f.submit "新規登録", class: "btn btn-success" %>
     </div>
    <% end %>
   </div>
