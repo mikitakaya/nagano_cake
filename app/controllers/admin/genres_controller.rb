@@ -21,6 +21,16 @@ class Admin::GenresController < ApplicationController
   end
 
   def update
+   # 登録済みのデータを取得する
+   @genre = Genre.find(params[:id])
+   # ジャンルの更新が成功した場合
+   if @genre.update(genre_params)
+    # ジャンル一覧画面にリダイレクト
+    redirect_to admin_genres_path
+   else
+    # falseの場合、編集画面を再表示する
+    render :edit
+   end
   end
 
   # ジャンルデータのストロングパラメータ

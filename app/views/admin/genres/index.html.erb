@@ -1,11 +1,6 @@
 <div class="container">
  <div class="row">
   <style>
-   span {
-    background-color: #e6dcdf;
-    display: inline;
-   }
-
    label {
     padding-right: 5%;
    }
@@ -22,7 +17,7 @@
 
   <div class="col-lg-12 col-md-10 col-sm-8">
    <h3 style="padding: 10px 0 30px 5%;">
-    <span>ジャンル一覧・追加</span>
+    <span style="background-color: #e6dcdf;">ジャンル一覧・追加</span>
    </h3>
 
    <%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
