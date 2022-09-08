@@ -47,6 +47,7 @@
   </div>
 
   <div class="mx-auto col-lg-8 col-md-10">
+   <!-- 画面遷移先は新規登録（create）後の画面のため、URLはadmin_items_pathとなる -->
    <%= form_with model: @item, url: admin_items_path do |f| %>
     <div class="field">
      <label for="admin_item_image">商品画像</label>

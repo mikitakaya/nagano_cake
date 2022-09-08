@@ -1,2 +1,87 @@
-<h1>Admin::Items#edit</h1>
-<p>Find me in app/views/admin/items/edit.html.erb</p>
+<div class="container">
+ <div class="row">
+  <style>
+   label {
+    width: 140px;
+   }
+
+   select, input, textarea {
+    width: 50%;
+   }
+
+   element.style {
+    height: 200px;
+   }
+
+   input[type=radio] {
+    width: auto;
+   }
+
+   text {
+    padding-right: 15%;
+   }
+
+   text:last-child {
+    padding: 0;
+   }
+
+   .field {
+    padding-bottom: 8px;
+   }
+
+   .btn:not(:disabled):not(.disabled) {
+    width: auto;
+   }
+
+   .input_wrap {
+    margin-left: 40%;
+   }
+  </style>
+
+  <div class="col-12">
+   <h3 style="padding: 10px 0 30px 5%;">
+    <span style="background-color: #e6dcdf;">商品編集</span>
+   </h3>
+  </div>
+
+  <div class="mx-auto col-lg-8 col-md-10">
+   <!-- 画面遷移先は商品詳細画面（show）のため、URLはadmin_item_pathとなる -->
+   <%= form_with model: @item, url: admin_item_path do |f| %>
+    <div class="field">
+     <label for="admin_item_image">商品画像</label>
+     <%= f.file_field :image, accept: "image/*" %>
+    </div>
+
+    <div class="field">
+     <label for="admin_item_name">商品名</label>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+     <label for="admin_item_introduction">商品説明</label>
+     <%= f.text_area :introduction, size: "1x8" %>
+    </div>
+
+    <div class="field">
+     <label for="admin_item_genre">ジャンル</label>
+     <%= f.collection_select(:genre_id, @genres, :id, :name, {prompt: "-- 選択してください --"} ) %>
+    </div>
+
+    <div class="field">
+     <label for="admin_item_price">税抜価格</label>
+     <%= f.text_field :price %> 円
+    </div>
+
+    <div class="field">
+     <label for="admin_item_is_active">販売ステータス</label>
+     <%= f.radio_button :is_active, "販売中" %> <text>販売中</text>
+     <%= f.radio_button :is_active, "販売停止中" %> <text>販売停止中</text>
+    </div>
+
+    <div class="input_wrap">
+     <%= f.submit "変更を保存", class: "btn btn-success" %>
+    </div>
+   <% end %>
+  </div>
+ </div>
+</div>

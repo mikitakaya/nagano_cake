@@ -23,9 +23,17 @@ class Admin::ItemsController < ApplicationController
   end
 
   def edit
+   # レコードを1件だけ取得
+   @item = Item.find(params[:id])
+   @genres = Genre.all
   end
 
   def update
+   # レコードを1件だけ取得
+   @item = Item.find(params[:id])
+   @item.update(item_params)
+   # 商品詳細画面にリダイレクト
+   redirect_to admin_item_path(@item.id)
   end
 
   # 商品データのストロングパラメータ
