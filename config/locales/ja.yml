@@ -1,0 +1,6 @@
+ ja:
+  enums:
+   order:
+    payment_method:
+     active: "販売中"
+      noactive: "販売停止中"
