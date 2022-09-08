@@ -47,7 +47,7 @@
   </div>
 
   <div class="mx-auto col-lg-8 col-md-10">
-   <%= form_with model: @item, url: new_admin_item_path, method: :get do |f| %>
+   <%= form_with model: @item, url: admin_items_path do |f| %>
     <div class="field">
      <label for="admin_item_image">商品画像</label>
      <%= f.file_field :image, accept: "image/*" %>
@@ -75,8 +75,8 @@
 
     <div class="field">
      <label for="admin_item_is_active">販売ステータス</label>
-     <%= f.radio_button :is_active, "販売中" %><text>販売中</text>
-     <%= f.radio_button :is_active, "販売停止中" %><text>販売停止中</text>
+     <%= f.radio_button :is_active, "販売中" %> <text>販売中</text>
+     <%= f.radio_button :is_active, "販売停止中" %> <text>販売停止中</text>
     </div>
 
     <div class="input_wrap">

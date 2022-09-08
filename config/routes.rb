@@ -62,4 +62,8 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
+  # devise_for :admin, controllers: {
+  # sessions: "admin/sessions"
+  # }
+
 end
