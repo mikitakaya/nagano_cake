@@ -1,2 +1,62 @@
-<h1>Admin::Items#index</h1>
-<p>Find me in app/views/admin/items/index.html.erb</p>
+<div class="container">
+ <div class="row">
+  <style>
+   thead {
+    color: rgba(0, 0, 0, 0.6);
+    background-color: #e6dcdf;
+   }
+  </style>
+
+  <div class="col-12 mx-auto">
+   <h3 style="padding: 10px 0 30px 5%;">
+    <span style="background-color: #e6dcdf;">商品一覧</span>
+   </h3>
+  </div>
+
+  <div class="col-lg-12 col-md-12 mx-auto">
+   <table class="table table-inverse">
+
+    <thead>
+     <tr>
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>税抜価格</th>
+      <th style="padding-right: 50px;">ジャンル</th>
+      <th>ステータス</th>
+     </tr>
+    </thead>
+
+    <tbody style="color: rgba(0, 0, 0, 0.6);">
+     <% @items.each do |item| %>
+     <tr>
+      <td>
+       <%= item.id %>
+      </td>
+      <td>
+       <%= link_to item.name, admin_item_path(item.id) %>
+      </td>
+      <td>
+       <%= item.price.to_s(:delimited) %>
+      </td>
+      <td>
+       <%= item.genre.name %>
+      </td>
+       <% if item.is_active == true %>
+        <th style="color: #28a745;">
+         <%= item.is_active_i18n %>
+        </th>
+       <% else %>
+        <td>
+         <%= item.is_active_i18n %>
+        </td>
+       <% end %>
+     </tr>
+     <% end %>
+    </tbody>
+
+   </table>
+
+   <%= paginate @items %>
+  </div>
+ </div>
+</div>
