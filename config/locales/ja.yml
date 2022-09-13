@@ -1,6 +1,15 @@
+ # 商品の販売ステータスの日本語化
  ja:
   enums:
    item:
     is_active:
      active: "販売中"
      no_active: "販売停止中"
+
+# 顧客の退会ステータスの日本語化
+ ja:
+  enums:
+   customer:
+    is_deleted:
+     active: "有効"
+     no_active: "退会"
