@@ -20,9 +20,7 @@
   </div>
 
   <div class="col-lg-5">
-   <picture>
-    <%= image_tag @item.image, size: "400x300" %>
-   </picture>
+   <%= image_tag @item.image, size: "400x300" %>
   </div>
 
   <div class="col-lg-6 ofset-1">
@@ -48,7 +46,7 @@
 
    <div class="field">
     <label for="admin_item_is_active">販売ステータス</label>
-    <%= @item.is_active %>
+    <%= @item.is_active_i18n %>
    </div>
 
    <div class="input_wrap">
