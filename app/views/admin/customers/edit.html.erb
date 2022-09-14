@@ -1,2 +1,82 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<div class="container">
+ <div class="row">
+  <style>
+   label {
+    width: 140px;
+    margin: 0 40px 20px 20px;
+   }
+
+   .style {
+    margin-right: 5%;
+   }
+
+   .address {
+    width: 60%;
+   }
+
+   text {
+    padding-right: 15px;
+   }
+  </style>
+
+  <div class="col-lg-10 col-md-12 mx-auto">
+   <h3 style="padding: 10px 0 30px">
+    <span style="background-color: #e6dcdf;">
+     <%= @customer.full_name %>さんの会員情報編集
+    </span>
+   </h3>
+
+   <!-- 画面遷移先は会員詳細画面（show）のため、URLはadmin_customer_pathとなる -->
+   <%= form_with model: @customer, url: admin_customer_path do |f| %>
+    <div class="field">
+     <%= f.label :id, "会員ID" %>
+     <%= @customer.id %>
+    </div>
+
+    <div class="field">
+     <%= f.label :full_name, "氏名" %>
+     <%= f.text_field :last_name, class: "style" %>
+     <%= f.text_field :first_name %>
+    </div>
+
+    <div class="field">
+     <%= f.label :full_name_kana, "フリガナ" %>
+     <%= f.text_field :last_name_kana, class: "style" %>
+     <%= f.text_field :first_name_kana %>
+    </div>
+
+    <div class="field">
+     <%= f.label :postal_code, "郵便番号" %>
+     <%= f.text_field :postal_code %>
+    </div>
+
+    <div class="field">
+     <%= f.label :address, "住所" %>
+     <%= f.text_field :address, class: "address" %>
+    </div>
+
+    <div class="field">
+     <%= f.label :telephone_number, "電話番号" %>
+     <%= f.text_field :telephone_number %>
+    </div>
+
+    <div class="field">
+     <%= f.label :email, "メールアドレス" %>
+     <%= f.text_field :email %>
+    </div>
+
+    <div class="field">
+     <%= f.label :is_deleted, "会員ステータス" %>
+     <%= f.radio_button :is_deleted, "active" %> <text>有効</text>
+     <%= f.radio_button :is_deleted, "no_active" %> <text>退会</text>
+    </div>
+
+    <div class="field">
+      <label></label>
+     <%= f.submit "変更を保存", class: "btn btn-success" %>
+    </div>
+
+   <% end %>
+
+ </div>
+</div>

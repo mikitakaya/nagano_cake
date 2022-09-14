@@ -35,7 +35,6 @@ class Admin::ItemsController < ApplicationController
   def update
    # レコードを1件だけ取得
    @item = Item.find(params[:id])
-   # binding.pry
    @item.update(item_params)
    # 商品詳細画面にリダイレクト
    redirect_to admin_item_path(@item.id)

@@ -14,8 +14,7 @@
   <div class="col-lg-10 col-md-10 mx-auto">
    <h3 style="padding: 10px 0 30px">
     <span style="background-color: #e6dcdf;">
-     <!--@customer.full_name %>-->
-     山田花子さんの会員詳細
+     <%= @customer.full_name %>さんの会員詳細
     </span>
    </h3>
 
@@ -26,27 +25,27 @@
 
    <div class="field">
     <label for="admin_customer_name">氏名</label>
-     <!--@customer.full_name %>-->
+     <%= @customer.full_name %>
    </div>
 
    <div class="field">
     <label for="admin_customer_name_kana">フリガナ</label>
-    <!--@customer.full_name_kana %>-->
+    <%= @customer.full_name_kana %>
    </div>
 
    <div class="field">
     <label for="admin_postal_code">郵便番号</label>
-    <!--@customer.postal_code %>-->
+    <%= @customer.postal_code %>
    </div>
 
    <div class="field">
     <label for="admin_address">住所</label>
-    <!--@customer.address %>-->
+    <%= @customer.address %>
    </div>
 
    <div class="field">
     <label for="admin_telephone_number">電話番号</label>
-    <!--@customer.telephone_number %>-->
+    <%= @customer.telephone_number %>
    </div>
 
    <div class="field">
@@ -56,7 +55,7 @@
 
    <div class="field">
     <label for="admin_is_deleted">会員ステータス</label>
-    <!--@customer.is_deleted_i18n %>-->
+    <%= @customer.is_deleted_i18n %>
    </div>
 
    <div class="field">

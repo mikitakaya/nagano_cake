@@ -14,5 +14,5 @@ class Customer < ApplicationRecord
    self.last_name_kana + " " + self.first_name_kana
   end
 
-  enum is_deleted: { active: true, no_active: false}
+  enum is_deleted: { no_active: true, active: false}
 end

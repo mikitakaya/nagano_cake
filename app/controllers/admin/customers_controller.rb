@@ -15,6 +15,11 @@ class Admin::CustomersController < ApplicationController
   end
 
   def update
+   # レコードを1件だけ取得
+   @customer = Customer.find(params[:id])
+   @customer.update(customer_params)
+   # 会員詳細画面にリダイレクト
+   redirect_to admin_customer_path(@customer.id)
   end
 
   private

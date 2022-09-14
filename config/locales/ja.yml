@@ -9,5 +9,5 @@
 # 顧客の会員ステータスの日本語化
    customer:
     is_deleted:
-     active: "有効"
      no_active: "退会"
+     active: "有効"
