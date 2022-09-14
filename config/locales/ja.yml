@@ -6,9 +6,7 @@
      active: "販売中"
      no_active: "販売停止中"
 
-# 顧客の退会ステータスの日本語化
- ja:
-  enums:
+# 顧客の会員ステータスの日本語化
    customer:
     is_deleted:
      active: "有効"

@@ -41,9 +41,8 @@ class Admin::ItemsController < ApplicationController
    redirect_to admin_item_path(@item.id)
   end
 
-  # 商品データのストロングパラメータ
   private
-
+  # 商品データのストロングパラメータ
   def item_params
    params.require(:item).permit(:image, :name, :introduction, :genre_id, :price, :is_active)
   end

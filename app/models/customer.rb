@@ -4,8 +4,14 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # 会員フルネーム（漢字）用のメソッド
   def full_name
    self.last_name + " " + self.first_name
+  end
+
+  # 会員フルネーム（カナ）用のメソッド
+  def full_name_kana
+   self.last_name_kana + " " + self.first_name_kana
   end
 
   enum is_deleted: { active: true, no_active: false}

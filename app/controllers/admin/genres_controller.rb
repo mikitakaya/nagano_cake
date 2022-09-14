@@ -33,9 +33,8 @@ class Admin::GenresController < ApplicationController
    end
   end
 
-  # ジャンルデータのストロングパラメータ
   private
-
+  # ジャンルデータのストロングパラメータ
   def genre_params
    params.require(:genre).permit(:name)
   end

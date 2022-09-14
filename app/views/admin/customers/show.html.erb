@@ -1,2 +1,70 @@
-<h1>Admin::Customers#show</h1>
-<p>Find me in app/views/admin/customers/show.html.erb</p>
+<div class="container">
+ <div class="row">
+  <style>
+   label {
+    width: 140px;
+    margin: 0 40px 20px 20px;
+   }
+
+   .btn-success {
+    margin-right: 60px;
+   }
+  </style>
+
+  <div class="col-lg-10 col-md-10 mx-auto">
+   <h3 style="padding: 10px 0 30px">
+    <span style="background-color: #e6dcdf;">
+     <!--@customer.full_name %>-->
+     山田花子さんの会員詳細
+    </span>
+   </h3>
+
+   <div class="field">
+    <label for="admin_customer_id">会員ID</label>
+    <%= @customer.id %>
+   </div>
+
+   <div class="field">
+    <label for="admin_customer_name">氏名</label>
+     <!--@customer.full_name %>-->
+   </div>
+
+   <div class="field">
+    <label for="admin_customer_name_kana">フリガナ</label>
+    <!--@customer.full_name_kana %>-->
+   </div>
+
+   <div class="field">
+    <label for="admin_postal_code">郵便番号</label>
+    <!--@customer.postal_code %>-->
+   </div>
+
+   <div class="field">
+    <label for="admin_address">住所</label>
+    <!--@customer.address %>-->
+   </div>
+
+   <div class="field">
+    <label for="admin_telephone_number">電話番号</label>
+    <!--@customer.telephone_number %>-->
+   </div>
+
+   <div class="field">
+    <label for="admin_email">メールアドレス</label>
+    <%= @customer.email %>
+   </div>
+
+   <div class="field">
+    <label for="admin_is_deleted">会員ステータス</label>
+    <!--@customer.is_deleted_i18n %>-->
+   </div>
+
+   <div class="field">
+    <label></label>
+    <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "btn btn-success" %>
+    <%= link_to "注文履歴一覧を見る", admin_top_path, class: "btn btn-primary" %>
+   </div>
+
+  </div>
+ </div>
+</div>
