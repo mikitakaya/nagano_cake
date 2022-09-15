@@ -12,7 +12,7 @@
      no_active: "退会"
      active: "有効"
 
-# 注文ステータス
+# 注文ステータス、支払い方法
    order:
     order_status:
      wait: "入金待ち"
@@ -20,3 +20,11 @@
      make: "製作中"
      preparation: "発送準備中"
      sent: "発送済み"
+    payment_method:
+     credit_card: "クレジットカード"
+     transfer: "銀行振込"
+
+   time:
+    formats:
+     default: "%Y/%m/%d %H:%M:%S"
+     short: "%Y/%m/%d"
