@@ -45,7 +45,7 @@
 
    <%= form_with model: @order, url: admin_order_path(@order.id) do |f| %>
     <div class="field">
-     <label for="order_status">注文ステータス</label>
+     <%= f.label :order_status, "注文ステータス" %>
      <%= f.select, :order_status, Oder.order_statuses.key.map {|k| [i18n.t("enums.order.order_status.#{k}"),k]} %>
      <%= f.submit "更新", class: "btn btn-success" %>
     </div>
@@ -89,16 +89,16 @@
 
        </td>
 
-       <!-- 製作ステータス -->
-       <td>
-
-       </td>
-
-       <!-- 更新ボタン -->
        <%= form_with model: @order, url: admin_order_path(@order.id) do |f| %>
-       <td>
-        <%= f.submit "更新", class: "btn btn-success" %>
-       </td>
+        <!-- 製作ステータス -->
+        <td>
+         <%= f.order_details.select, :crafting_status, Oder_details.crafting_status.key.map {|k| [i18n.t("enums.order_details.crafting_status.#{k}"),k]} %>
+        </td>
+
+        <!-- 更新ボタン -->
+        <td>
+         <%= f.submit "更新", class: "btn btn-success" %>
+        </td>
        <% end %>
 
       </tr>
