@@ -11,3 +11,12 @@
     is_deleted:
      no_active: "退会"
      active: "有効"
+
+# 注文ステータス
+   order:
+    order_status:
+     wait: "入金待ち"
+     deposited: "入金確認"
+     make: "製作中"
+     preparation: "発送準備中"
+     sent: "発送済み"

@@ -29,18 +29,27 @@
     <tbody style="color: rgba(0, 0, 0, 0.6);">
      <% @items.each do |item| %>
      <tr>
+      <!-- 商品ID -->
       <td>
        <%= item.id %>
       </td>
+
+      <!-- 商品名 -->
       <td>
        <%= link_to item.name, admin_item_path(item.id) %>
       </td>
+
+      <!-- 税抜価格 -->
       <td>
        <%= item.price.to_s(:delimited) %>
       </td>
+
+      <!-- ジャンル -->
       <td>
        <%= item.genre.name %>
       </td>
+
+      <!-- ステータス -->
        <% if item.is_active == true %>
         <th style="color: #28a745;">
          <%= item.is_active_i18n %>
@@ -50,12 +59,13 @@
          <%= item.is_active_i18n %>
         </td>
        <% end %>
+
      </tr>
      <% end %>
     </tbody>
-
    </table>
 
+   <!-- ページネーション -->
    <%= paginate @items %>
   </div>
  </div>
