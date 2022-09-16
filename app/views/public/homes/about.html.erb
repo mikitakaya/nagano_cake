@@ -1,2 +1,63 @@
-<h1>Public::Homes#about</h1>
-<p>Find me in app/views/public/homes/about.html.erb</p>
+<div class="container">
+ <div class="row">
+  <style>
+   h1 {
+    font-size: 60px;
+    margin-bottom: 15px;
+   }
+
+   .about_text {
+    font-size: 20px
+   }
+   .about_image {
+    width: 500px;
+    height:325px;
+    margin: 15px 0;
+   }
+
+   /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
+   @media screen and (max-width: 768px) {
+    .about_text {
+     font-size: 17px;
+    }
+
+    h1 {
+     font-size: 50px;
+    }
+   }
+
+   /* スマートフォンサイズ（425px）以下の際に適用される設定 */
+   @media screen and (max-width:425px) {
+    .about_text {
+     font-size: 10px;
+    }
+
+    h1 {
+     font-size: 30px;
+    }
+
+    .about_image {
+     width: 250px;
+     height: 162px;
+    }
+   }
+  </style>
+
+  <div class="mx-auto", style="text-align: center;">
+   <h1>
+    About
+   </h1>
+
+   <p class="about_text">
+    ながのCAKEは全国発送可能なケーキ屋さんです。</br>
+    お子様からお年寄りの方までお召し上がりいただけるよう、</br>
+    様々なバリエーションをご用意しております。</br>
+    また、全国へ発送可能ですので「いつ」でも「どこ」でもご注文いただけます。</br>
+    ぜひご注文ください。
+   </p>
+
+   <%= image_tag 'about.jpg', class: "about_image" %>
+  </div>
+
+ </div>
+</div>

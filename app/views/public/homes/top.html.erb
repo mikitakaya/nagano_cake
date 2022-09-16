@@ -4,7 +4,7 @@
    .main-visual {
     width: 700px; /* 横幅700px */
     height: 400px; /* 高さ400px */
-    margin: 20px 0 0 20px;
+    margin-top: 20px;
     background-image: url("<%= asset_path('top.jpg') %>");
     background-size: cover; /* 縦横比を維持したまま背景領域を埋め尽くす */
     background-position: center; /* 背景画像を中央に配置 */
@@ -20,7 +20,7 @@
     line-height: 35px; /* 文字の行の高さ */
     position: absolute; /* 水平・垂直方向の中央揃え */
     top: 120px;
-    left: 200px;
+    left: 180px;
     margin: -25px 0 0 -25px; /* 完全に中央に配置するため、上・左の margin を負の数に設定 */
     font-size: 17px;
     }
@@ -38,7 +38,7 @@
 
     .item {
      display: inline-block;
-     margin: 20px;
+     margin: 10px 30px 10px 0;
     }
 
     .items {
@@ -57,23 +57,23 @@
       height: 250px; /* 高さ250px */
       padding-top: 45px; /* 上側の内側余白で垂直方向の位置を調整 */
       top: 100px;
-      left: 100px;
+      left: 80px;
      }
     }
 
     /* スマートフォンサイズ（425px）以下の際に適用される設定 */
-    @media screen and (max-width:710px) {
+    @media screen and (max-width:425px) {
      .main-visual {
       width: 350px; /* 横幅350px */
       height:250px; /* 高さ200px */
      }
 
      .main-visual-content {
-      width: 290px; /* 横幅420px */
-      height: 200px;
+      width: 290px; /* 横幅290px */
+      height: 200px; /* 高さ200px */
       padding-top: 25px; /* 上側の内側余白で垂直方向の位置を調整 */
       top: 70px;
-      left: 90px;
+      left: 70px;
       font-size: 12px;
      }
     }
@@ -91,12 +91,12 @@
     </div>
    </div>
 
-   <h3 style="margin: 40px 0 0 20px">新着商品</h3>
+   <h3 style="margin-top: 40px">新着商品</h3>
    <div class="new_item">
     <% @items.each do |item| %>
      <div class="item">
       <%= image_tag item.image, class: "item_image" %></br>
-      <%= item.name %></br>
+      <text style="width: 200px;"><%= item.name %></text></br>
       ¥<%= (item.price * 1.1).floor.to_s(:delimited) %></br>
      </div>
     <% end %>
