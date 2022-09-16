@@ -39,9 +39,13 @@
      display: inline-block;
      margin: 20px;
     }
+
+    .items {
+     text-align: right;
+    }
   </style>
 
-  <div class="col-lg-12 col-md-12 mx-auto">
+  <div class="col-lg-11 col-md-12 mx-auto">
    <div class="main-visual">
     <div class="main-visual-content">
      <p>
@@ -62,6 +66,10 @@
       ¥<%= (item.price * 1.1).floor.to_s(:delimited) %></br>
      </div>
     <% end %>
+   </div>
+
+   <div class="items">
+    <%= link_to "全ての商品を見る >", items_path %>
    </div>
   </div>
 
