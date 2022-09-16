@@ -2,8 +2,8 @@
  <div class="row">
   <style>
    .main-visual {
-    width: 700px; /* 横幅500px */
-    height: 400px; /* 高さ350px */
+    width: 700px; /* 横幅700px */
+    height: 400px; /* 高さ400px */
     margin: 20px 0 0 20px;
     background-image: url("<%= asset_path('top.jpg') %>");
     background-size: cover; /* 縦横比を維持したまま背景領域を埋め尽くす */
@@ -11,8 +11,8 @@
    }
 
    .main-visual-content {
-    width: 420px; /* 横幅80% */
-    height: 250px;
+    width: 420px; /* 横幅420px */
+    height: 250px; /* 高さ250px */
     background-color: rgba(0, 0, 0, 0.4);  /* 背景色を40%透明の白にする */
     text-align: center; /* 文字を中央揃えにする */
     padding-top: 55px; /* 上側の内側余白で垂直方向の位置を調整 */
@@ -22,16 +22,17 @@
     top: 120px;
     left: 200px;
     margin: -25px 0 0 -25px; /* 完全に中央に配置するため、上・左の margin を負の数に設定 */
+    font-size: 17px;
     }
 
     .item_image {
      width: 180px;
      height: 120px;
-     margin-bottom: 10px;
+     margin-bottom: 15px;
     }
 
     .new_item {
-     line-height: 35px; /* 文字の行の高さ */
+     line-height: 25px; /* 文字の行の高さ */
      display: block;
     }
 
@@ -41,7 +42,40 @@
     }
 
     .items {
-     text-align: right;
+     text-align: right; /* 文字の右寄せ */
+    }
+
+    /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
+    @media screen and (max-width: 768px) {
+     .main-visual {
+      width: 500px; /* 横幅500px */
+      height: 350px; /* 高さ350px */
+     }
+
+     .main-visual-content {
+      width: 420px; /* 横幅420px */
+      height: 250px; /* 高さ250px */
+      padding-top: 45px; /* 上側の内側余白で垂直方向の位置を調整 */
+      top: 100px;
+      left: 100px;
+     }
+    }
+
+    /* スマートフォンサイズ（425px）以下の際に適用される設定 */
+    @media screen and (max-width:710px) {
+     .main-visual {
+      width: 350px; /* 横幅350px */
+      height:250px; /* 高さ200px */
+     }
+
+     .main-visual-content {
+      width: 290px; /* 横幅420px */
+      height: 200px;
+      padding-top: 25px; /* 上側の内側余白で垂直方向の位置を調整 */
+      top: 70px;
+      left: 90px;
+      font-size: 12px;
+     }
     }
   </style>
 
