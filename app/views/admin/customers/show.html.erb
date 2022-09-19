@@ -9,10 +9,30 @@
    .btn-success {
     margin-right: 60px;
    }
+
+   /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
+   @media screen and (max-width:768px) {
+    h3 {
+     font-size: 18px;
+    }
+
+    label {
+     width: 95px;
+    }
+
+    .field, .btn-success, .btn-primary {
+     font-size: 13px;
+    }
+
+    .btn-success {
+     margin-right: 2%;
+    }
+   }
+
   </style>
 
   <div class="col-lg-10 col-md-10 mx-auto">
-   <h3 style="padding: 10px 0 30px">
+   <h3 style="padding: 10px 0 4%">
     <span style="background-color: #e6dcdf;">
      <%= @customer.full_name %>さんの会員詳細
     </span>
@@ -58,7 +78,7 @@
     <%= @customer.is_deleted_i18n %>
    </div>
 
-   <div class="field">
+   <div class="actions">
     <label></label>
     <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "btn btn-success" %>
     <%= link_to "注文履歴一覧を見る", admin_top_path, class: "btn btn-primary" %>
