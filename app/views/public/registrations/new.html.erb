@@ -1,26 +1,118 @@
 <div class="container">
  <div class="row">
   <style>
-   label {
-    width: 250px;
-    height: 30px;
+   .field {
+    display: flex;
+    margin-bottom: 10px;
    }
+
+   label {
+    width: 220px;
+   }
+
+   .full_name {
+    width: 158px;
+   }
+
+   .last_name {
+    margin-right: 30px;
+   }
+
+   .address {
+    width: 50%;
+   }
+
+   .login {
+    margin: 0 10px 0 8%;
+   }
+
+   .actions {
+    margin-top: 2%;
+   }
+
+   /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
+   @media screen and (max-width:768px) {
+    h3 {
+     font-size: 18px;
+    }
+
+    .field {
+     font-size: 11px;
+    }
+
+    .btn-success {
+     font-size: 11px;
+    }
+
+    label {
+     width: 140px;
+    }
+
+    .full_name {
+     width: 98px;
+    }
+
+    .last_name {
+     margin-right: 5px;
+     width: 100px;
+    }
+
+    .text_field {
+      width: 100px;
+    }
+   }
+
   </style>
 
-  <div class="col-12 mx-auto">
-   <h3 style="padding: 10px 0 30px 5%;">
+  <div class="col-lg-12 col-md-12 mx-auto">
+   <h3 style="padding: 10px 0 3% 5%;">
     <span style="background-color: #e6dcdf;">
      新規会員登録
     </span>
    </h3>
 
-   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+   <%= form_with model: @customer, url: customer_registration_path, id: 'new_costomer', class: "new_customer" do |f| %>
+   <!--%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>-->
    <%= render "public/shared/error_messages", resource: resource %>
+
+    <!-- 名前 -->
+    <div class="field">
+     <div class="full_name">
+      <%= f.label :full_name, "名前", class: "full_name" %>
+     </div>
+      （姓）　<%= f.text_field :last_name, class: "last_name" %>
+      （名）　<%= f.text_field :first_name, class: "text_field" %>
+    </div>
+
+    <!-- フリガナ -->
+    <div class="field">
+      <%= f.label :full_name_kana, "フリガナ", class: "full_name" %>
+      （セイ）<%= f.text_field :last_name_kana, class: "last_name" %>
+      （メイ）<%= f.text_field :first_name_kana, class: "text_field" %>
+    </div>
 
     <!-- メールアドレス -->
     <div class="field">
      <%= f.label :email, "メールアドレス" %>
-     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "text_field" %>
+    </div>
+
+    <!-- 郵便番号 -->
+    <div class="field">
+      <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
+      <%= f.text_field :postal_code, class: "text_field" %>
+    </div>
+
+    <!-- 住所 -->
+    <div class="field">
+      <%= f.label :address, "住所" %>
+      <%= f.text_field :address, class: "address" %>
+    </div>
+
+    <!-- 電話番号 -->
+    <div class="field">
+      <%= f.label :telephone_number, "電話番号（ハイフンなし）" %>
+      <%= f.text_field :telephone_number, class: "text_field" %>
     </div>
 
     <!-- パスワード -->
@@ -28,13 +120,13 @@
      <label for="password">
       パスワード<% if @minimum_password_length %>（<%= @minimum_password_length %>文字以上）<% end %>
      </label>
-     <%= f.password_field :password, autocomplete: "new-password" %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "text_field" %>
     </div>
 
     <!-- パスワード（確認用） -->
     <div class="field">
      <label for="password_confirmation">パスワード（確認用）</label>
-     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "text_field" %>
     </div>
 
     <div class="actions">
@@ -44,8 +136,15 @@
    <% end %>
 
    <!-- ログイン画面のリンク -->
-   <%= render "public/shared/links" %>
-  </div>
+   <h3 style="padding: 4% 0 10px 5%;">
+    <span style="background-color: #e6dcdf;">
+     既に登録済みの方
+    </span>
+   </h3>
+   <div class="field">
+    <%= link_to "こちら", new_customer_session_path, class: "login" %>
+    からログインしてください。
+   </div>
 
  </div>
 </div>
