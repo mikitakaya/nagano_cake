@@ -31,13 +31,13 @@
         <%= customer.id %>
        </td>
        <td>
-        <!--link_to customer.full_name, admin_customer_path(customer.id) %>-->
+        <%= link_to customer.full_name, admin_customer_path(customer.id) %>
        </td>
        <td>
         <%= customer.email %>
        </td>
        <td>
-        <!--customer.is_deleted.i18n %>-->
+        <%= customer.is_deleted_i18n %>
        </td>
       </tr>
      <% end %>

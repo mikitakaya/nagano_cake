@@ -11,7 +11,28 @@
    }
 
    h3 {
-    padding: 20px 0 20px 5%;
+    padding: 20px 0 3% 5%;
+   }
+
+   /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
+   @media screen and (max-width:768px) {
+    label {
+     width: 100px;
+     margin: 10px 0;
+     font-size: 13px;
+    }
+
+    .field, .btn-primary {
+     font-size: 13px;
+    }
+
+    .text_field {
+     width: 55%;
+    }
+
+    h3 {
+     font-size: 20px;
+    }
    }
   </style>
 
@@ -43,5 +64,3 @@
   </div>
  </div>
 </div>
-
-<%= render "admin/shared/links" %>

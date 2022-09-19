@@ -7,7 +7,7 @@
    }
 
    h3 {
-    padding: 20px 0 20px 5%;
+    padding: 20px 0 3% 5%;
    }
 
    h5 {
@@ -19,7 +19,32 @@
    }
 
    .sign_up {
-     margin-right: 10px;
+     margin-right: 2%;
+   }
+
+   /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
+   @media screen and (max-width:768px) {
+    label {
+     width: 100px;
+     margin: 10px 0;
+     font-size: 13px;
+    }
+
+    .field, .sign_up, .btn-primary {
+     font-size: 13px;
+    }
+
+    .text_field {
+     width: 55%;
+    }
+
+    h3 {
+     font-size: 20px;
+    }
+
+    h5 {
+     font-size: 15px;
+    }
    }
   </style>
 
@@ -63,7 +88,7 @@
     </span>
    </h5>
   </div>
-  <div class="mx-auto", style="width: 50%">
+  <div class="mx-auto", style="width: 60%">
    <div class="field">
     <%= link_to "こちら", new_customer_registration_path, class: "sign_up" %>
     から新規登録を行なってください。
