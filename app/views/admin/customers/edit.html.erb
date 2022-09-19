@@ -17,10 +17,32 @@
    text {
     padding-right: 15px;
    }
+
+   /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
+   @media screen and (max-width:768px) {
+    h3 {
+     font-size: 18px;
+    }
+
+    label {
+     width: 85px;
+     margin: 0 2% 20px 20px;
+    }
+
+    .field, .btn-success {
+     font-size: 11px;
+    }
+
+    .text_field, .style {
+      width: 100px;
+    }
+
+   }
+
   </style>
 
   <div class="col-lg-10 col-md-12 mx-auto">
-   <h3 style="padding: 10px 0 30px">
+   <h3 style="padding: 10px 0 4%">
     <span style="background-color: #e6dcdf;">
      <%= @customer.full_name %>さんの会員情報編集
     </span>
@@ -36,18 +58,18 @@
     <div class="field">
      <%= f.label :full_name, "氏名" %>
      <%= f.text_field :last_name, class: "style" %>
-     <%= f.text_field :first_name %>
+     <%= f.text_field :first_name, class: "text_field" %>
     </div>
 
     <div class="field">
      <%= f.label :full_name_kana, "フリガナ" %>
      <%= f.text_field :last_name_kana, class: "style" %>
-     <%= f.text_field :first_name_kana %>
+     <%= f.text_field :first_name_kana, class: "text_field" %>
     </div>
 
     <div class="field">
      <%= f.label :postal_code, "郵便番号" %>
-     <%= f.text_field :postal_code %>
+     <%= f.text_field :postal_code, class: "text_field" %>
     </div>
 
     <div class="field">
@@ -57,12 +79,12 @@
 
     <div class="field">
      <%= f.label :telephone_number, "電話番号" %>
-     <%= f.text_field :telephone_number %>
+     <%= f.text_field :telephone_number, class: "text_field" %>
     </div>
 
     <div class="field">
      <%= f.label :email, "メールアドレス" %>
-     <%= f.text_field :email %>
+     <%= f.text_field :email, class: "text_field" %>
     </div>
 
     <div class="field">
