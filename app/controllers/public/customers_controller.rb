@@ -5,12 +5,21 @@ class Public::CustomersController < ApplicationController
   end
 
   def edit
+   # 現在ログインしているcustomer
+   @customer = current_customer
   end
 
   def update
+   # 現在ログインしているcustomer
+   @customer = current_customer
+   @customer.update(customer_params)
+   # マイページにリダイレクト
+   redirect_to show_path
   end
 
   def unsubscribe
+   # 現在ログインしているcustomer
+   @customer = current_customer
   end
 
   def withdraw
