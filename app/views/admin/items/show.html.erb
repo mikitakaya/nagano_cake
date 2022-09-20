@@ -21,10 +21,6 @@
     flex-direction: row;
    }
 
-   .active {
-    color: #28a745;
-   }
-
    .active, .no_active {
     font-weight: bold;
    }
@@ -84,7 +80,7 @@
    <div class="field">
     <label for="admin_item_is_active">販売ステータス</label>
     <% if @item.is_active == "active" %>
-     <div class="active">
+     <div class="active", style="color: #28a745;">
       <%= @item.is_active_i18n %>
      </div>
     <% else %>

@@ -6,10 +6,6 @@
     background-color: #e6dcdf;
    }
 
-   .active {
-    color: #28a745;
-   }
-
    .active, .no_active {
     font-weight: bold;
    }
@@ -82,7 +78,7 @@
 
       <!-- ステータス -->
        <% if item.is_active == "active" %>
-        <td class="active">
+        <td class="active", style="color: #28a745;">
          <%= item.is_active_i18n %>
         </td>
        <% else %>

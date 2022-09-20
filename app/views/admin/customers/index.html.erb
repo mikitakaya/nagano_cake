@@ -5,10 +5,25 @@
     color: rgba(0, 0, 0, 0.6);
     background-color: #e6dcdf;
    }
+
+   .active, .no_active {
+    font-weight: bold;
+   }
+
+   /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
+   @media screen and (max-width: 768px) {
+    h3 {
+     font-size: 18px;
+    }
+
+    .table-inverse {
+     font-size: 13px;
+    }
+   }
   </style>
 
   <div class="col-12 mx-auto">
-   <h3 style="padding: 10px 0 30px 5%;">
+   <h3 style="padding: 10px 0 3% 5%;">
     <span style="background-color: #e6dcdf;">会員一覧</span>
    </h3>
   </div>
@@ -36,9 +51,17 @@
        <td>
         <%= customer.email %>
        </td>
-       <td>
-        <%= customer.is_deleted_i18n %>
-       </td>
+
+       <% if customer.is_deleted == "active" %>
+        <td class="active", style="color: #28a745;">
+         <%= customer.is_deleted_i18n %>
+        </td>
+       <% else %>
+        <td class="no_active">
+         <%= customer.is_deleted_i18n %>
+        </td>
+       <% end %>
+
       </tr>
      <% end %>
     </tbody>
