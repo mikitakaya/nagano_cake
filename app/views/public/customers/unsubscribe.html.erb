@@ -1,2 +1,49 @@
-<h1>Public::Customers#unsubscribe</h1>
-<p>Find me in app/views/public/customers/unsubscribe.html.erb</p>
+<div class="container">
+ <div class="row">
+  <style>
+   .headline, .text {
+    text-align: center;
+   }
+
+   .actions {
+    margin-top: 30px;
+   }
+
+   .btn-primary {
+     margin-right: 30px;
+   }
+
+   /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
+  @media screen and (max-width: 768px) {
+   h4 {
+    font-size: 20px;
+   }
+
+   .text, .btn-primary, .btn-danger {
+    font-size: 15px;
+   }
+  }
+  </style>
+
+  <div class="mx-auto", style="margin: 150px 0 200px;">
+   <h4 style="margin-bottom: 20px;">
+    <div class="headline", style="font-weight: bold;">
+     本当に退会しますか？
+    </div>
+   </h4>
+   <h5>
+    <div class="text" style="line-height: 1.5;">
+     退会すると、会員情報登録や</br>
+     これまでの購入履歴が閲覧できなくなります。</br>
+     退会する場合は、「退会する」をクリックしてください。
+    </div>
+   </h5>
+
+   <div class="actions">
+    <%= link_to "退会しない", show_path, class: "btn btn-primary" %>
+    <%= link_to "退会する", withdraw_path, method: :patch, data: { confilm: "本当に退会しますか？" }, class: "btn btn-danger" %>
+   </div>
+
+  </div>
+ </div>
+</div>

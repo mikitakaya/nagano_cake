@@ -22,7 +22,6 @@
     top: 120px;
     left: 180px;
     margin: -25px 0 0 -25px; /* 完全に中央に配置するため、上・左の margin を負の数に設定 */
-    font-size: 17px;
     }
 
     .item_image {
@@ -38,7 +37,7 @@
 
     .item {
      display: inline-block;
-     margin: 10px 30px 10px 0;
+     margin: 10px 30px 15px 0;
     }
 
     .items {
@@ -48,16 +47,34 @@
     /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
     @media screen and (max-width: 768px) {
      .main-visual {
-      width: 500px; /* 横幅500px */
-      height: 350px; /* 高さ350px */
+      width: 400px; /* 横幅500px */
+      height: 300px; /* 高さ350px */
      }
 
      .main-visual-content {
-      width: 420px; /* 横幅420px */
-      height: 250px; /* 高さ250px */
-      padding-top: 45px; /* 上側の内側余白で垂直方向の位置を調整 */
+      width: 320px; /* 横幅420px */
+      height: 200px; /* 高さ250px */
+      padding-top: 30px; /* 上側の内側余白で垂直方向の位置を調整 */
       top: 100px;
       left: 80px;
+     }
+
+     h3 {
+      font-size: 20px;
+     }
+
+     .item_image {
+      width: 135px;
+      height: 90px;
+      margin-bottom: 10px;
+     }
+
+     p, text, .items {
+      font-size: 13px;
+     }
+
+     .new_item {
+      line-height: 20px; /* 文字の行の高さ */
      }
     }
 
@@ -74,7 +91,10 @@
       padding-top: 25px; /* 上側の内側余白で垂直方向の位置を調整 */
       top: 70px;
       left: 70px;
-      font-size: 12px;
+     }
+
+     p, text, .items {
+      font-size: 11px;
      }
     }
   </style>
@@ -97,7 +117,7 @@
      <div class="item">
       <%= image_tag item.image, class: "item_image" %></br>
       <text style="width: 200px;"><%= item.name %></text></br>
-      ¥<%= (item.price * 1.1).floor.to_s(:delimited) %></br>
+      <text>¥<%= (item.price * 1.1).floor.to_s(:delimited) %></text></br>
      </div>
     <% end %>
    </div>
