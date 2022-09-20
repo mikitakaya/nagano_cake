@@ -1,2 +1,104 @@
-<h1>Public::Customers#show</h1>
-<p>Find me in app/views/public/customers/show.html.erb</p>
+<div class="container">
+ <div class="row">
+  <style>
+   .actions {
+     display: flex;
+     justify-content: start;
+   }
+
+   th {
+    width: 20%;
+    height: 50px;
+    padding-left: 10px;
+    background-color: #e6dcdf;
+   }
+
+   td {
+    width: 40%;
+    padding-left: 10px;
+    background-color: #fbf5f7;
+   }
+
+   table {
+    width: 60%;
+   }
+
+   table, tr, th {
+    border: solid rgba(0, 0, 0, 0.6);
+   }
+
+   /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
+   @media screen and (max-width: 768px) {
+    th {
+     width: 40%;
+    }
+
+    td {
+     width: 60%;
+    }
+
+    table {
+     width: 100%;
+    }
+   }
+  </style>
+
+  <div class="col-lg-12">
+   <h3 style="padding: 10px 0 2% 10%">
+    <span style="background-color: #e6dcdf;">
+     マイページ
+    </span>
+   </h3>
+   <div class="actions">
+    <h5 style="padding: 8px 40px 0 0">登録情報</h5>
+    <%= link_to "編集する", edit_path(@customer), class: "btn btn-success" %>
+   </div>
+
+   <div class="col-lg-12", style="padding: 20px 0 30px;">
+    <table>
+     <tr>
+      <th>氏名</th>
+      <td><%= @customer.full_name %></td>
+     </tr>
+
+     <tr>
+      <th>カナ</th>
+      <td><%= @customer.full_name_kana %></td>
+     </tr>
+
+     <tr>
+      <th>郵便番号</th>
+      <td><%= @customer.postal_code %></td>
+     </tr>
+
+     <tr>
+      <th>住所</th>
+      <td><%= @customer.address %></td>
+     </tr>
+
+     <tr>
+      <th>電話番号</th>
+      <td><%= @customer.telephone_number %></td>
+     </tr>
+
+     <tr>
+      <th>メールアドレス</th>
+      <td><%= @customer.email %></td>
+     </tr>
+    </table>
+
+    <div class="actions">
+     <h5>配送先</h5>
+     <%= link_to "一覧を見る", addresses_path(@customer), class: "btn btn-primary" %>
+    </div>
+
+    <div class="actions">
+     <h5>注文履歴</h5>
+     <%= link_to "一覧を見る", orders_path(@customer), class: "btn btn-primary" %>
+    </div>
+
+   </div>
+
+  </div>
+ </div>
+</div>
