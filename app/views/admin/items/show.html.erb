@@ -1,8 +1,14 @@
 <div class="container">
  <div class="row">
   <style>
+   .item-image {
+    width: 380px;
+    height: 285px;
+   }
+
    label {
-    width: 140px;
+    width: 160px;
+    /*margin-right: 50px;*/
    }
 
    .input_wrap {
@@ -10,14 +16,34 @@
    }
 
    .field {
-    width: 600px;
+    width: 100%;
     display: flex;
     flex-direction: row;
    }
 
+   .active {
+    color: #28a745;
+   }
+
+   .active, .no_active {
+    font-weight: bold;
+   }
+
    text {
-    margin-bottom: 10px;
-    width: 350px;
+    width: 70%;
+   }
+
+   /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
+   @media screen and (max-width: 768px) {
+    .item-image {
+     width: 285px;
+     height: 214px;
+    }
+
+    text {
+     width: 60%;
+     margin-bottom: 15px;
+    }
    }
   </style>
 
@@ -28,13 +54,13 @@
   </div>
 
   <div class="col-lg-5", style="margin-bottom: 30px;">
-   <%= image_tag @item.image, size: "380x285" %>
+   <%= image_tag @item.image, class: "item-image" %>
   </div>
 
   <div class="col-lg-6 col-md-10 ofset-1">
    <div class="field">
     <label for="admin_item_name">商品名</label>
-    <%= @item.name %>
+    <text><%= @item.name %></text>
    </div>
 
    <div class="field">
@@ -49,13 +75,23 @@
 
    <div class="field">
     <label for="admin_item_price">税込価格</br>(税抜価格)</label>
-    <%= (@item.price * 1.1).floor.to_s(:delimited) %>
+    <text style="padding-top: 10px;">
+     <%= (@item.price * 1.1).floor.to_s(:delimited) %>
     （<%= @item.price.to_s(:delimited) %>）円
+    </text>
    </div>
 
    <div class="field">
     <label for="admin_item_is_active">販売ステータス</label>
-    <%= @item.is_active_i18n %>
+    <% if @item.is_active == "active" %>
+     <div class="active">
+      <%= @item.is_active_i18n %>
+     </div>
+    <% else %>
+     <div class="no_active">
+      <%= @item.is_active_i18n %>
+     </div>
+    <% end %>
    </div>
 
    <div class="input_wrap">
