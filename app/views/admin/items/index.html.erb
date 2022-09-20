@@ -5,10 +5,41 @@
     color: rgba(0, 0, 0, 0.6);
     background-color: #e6dcdf;
    }
+
+   .active {
+    color: #28a745;;
+   }
+
+   .active, .no_active {
+    font-weight: bold;
+   }
+
+   /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
+   @media screen and (max-width: 768px) {
+    .table-inverse {
+     font-size: 10px;
+    }
+
+    .item_id {
+     width: 55px;
+    }
+
+    .item_price, .item_genre {
+     width: 65px;
+    }
+
+    .is_active {
+     width: 75px;
+    }
+
+    h3 {
+     font-size: 18px;
+    }
+   }
   </style>
 
   <div class="col-12 mx-auto">
-   <h3 style="padding: 10px 0 30px 5%;">
+   <h3 style="padding: 10px 0 3% 5%;">
     <span style="background-color: #e6dcdf;">商品一覧</span>
    </h3>
   </div>
@@ -18,11 +49,11 @@
 
     <thead>
      <tr>
-      <th>商品ID</th>
+      <th class="item_id">商品ID</th>
       <th>商品名</th>
-      <th>税抜価格</th>
-      <th style="padding-right: 50px;">ジャンル</th>
-      <th>ステータス</th>
+      <th class="item_price">税抜価格</th>
+      <th class="item_genre">ジャンル</th>
+      <th class="is_active">ステータス</th>
      </tr>
     </thead>
 
@@ -50,12 +81,12 @@
       </td>
 
       <!-- ステータス -->
-       <% if item.is_active == true %>
-        <th style="color: #28a745;">
+       <% if item.is_active == "active" %>
+        <td class="active">
          <%= item.is_active_i18n %>
-        </th>
+        </td>
        <% else %>
-        <td>
+        <td class="no_active">
          <%= item.is_active_i18n %>
         </td>
        <% end %>
