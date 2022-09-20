@@ -87,14 +87,14 @@
      </tr>
     </table>
 
-    <div class="actions">
-     <h5>配送先</h5>
-     <%= link_to "一覧を見る", addresses_path(@customer), class: "btn btn-primary" %>
+    <div class="actions", style="margin: 30px 0 20px">
+     <h5 style="padding: 8px 60px 0 0">配送先</h5>
+     <%= link_to "一覧を見る", addresses_path, class: "btn btn-primary" %>
     </div>
 
     <div class="actions">
-     <h5>注文履歴</h5>
-     <%= link_to "一覧を見る", orders_path(@customer), class: "btn btn-primary" %>
+     <h5 style="padding: 8px 40px 0 0">注文履歴</h5>
+     <%= link_to "一覧を見る", orders_path, class: "btn btn-primary" %>
     </div>
 
    </div>
