@@ -5,17 +5,47 @@
     width: 220px;
    }
 
-   .address {
-    width: 55%;
+   .field {
+    margin: 0 0 10px 3%;
    }
 
-   .btn-success {
+   .address_field {
+    width: 60%;
+   }
+
+   .action {
     float: right;
    }
 
+   thead {
+    background-color: #e6dcdf;
+   }
+
+   table, tr, th, td {
+    border: solid rgba(0, 0, 0, 0.6);
+   }
+
+   th, .address {
+    padding: 10px 25px 10px 5px;
+   }
+
+   td {
+    background-color: #fbf5f7;
+   }
+
+   .actions {
+    text-align: center;
+    width: 240px;
+    height: 60px;
+   }
+
+   /* 編集するボタン */
+   .btn-success {
+    margin-right: 10px;
+   }
   </style>
 
-  <div class="col-lg-8">
+  <div class="col-lg-10">
    <div class="new_address">
     <h3 style="padding: 10px 0 2% 10%">
     <span style="background-color: #e6dcdf;">
@@ -31,17 +61,21 @@
 
      <div class="field">
       <%= f.label :address, "住所" %>
-      <%= f.text_field :address, class: "address" %>
+      <%= f.text_field :address, class: "address_field" %>
      </div>
 
      <div class="field">
       <%= f.label :name, "宛名" %>
       <%= f.text_field :name %>
-      <%= f.submit "新規登録", class: "btn btn-success" %>
+      <div class="action">
+       <%= f.submit "新規登録", class: "btn btn-success" %>
+      </div>
      </div>
     <% end %>
    </div>
+  </div>
 
+  <div class="col-lg-9 col-md-12">
    <div class="address_index">
     <table>
      <thead>
@@ -53,37 +87,30 @@
       </tr>
      </thead>
 
-　   <tbody>
+　   <tbody style="color: rgba(0, 0, 0, 0.6);">
 　    <% @addresses.each do |address| %>
 　    <tr>
 　     <!-- 郵便番号 -->
-　     <td>
-　      <%= addresses.postal_code %>
-　     </td>
+　     <td class="address"><%= address.postal_code %></td>
 
 　     <!-- 住所 -->
-　     <td>
-　      <%= addresses.address %>
-　     </td>
+　     <td class="address"><%= address.address %></td>
 
 　     <!-- 宛名 -->
-　     <td>
-　      <%= addresses.name %>
-　     </td>
+　     <td class="address"><%= address.name %></td>
 
-       <td>
+       <td class="actions">
         <!-- 編集ボタン -->
-        <%= link_to "編集する",  %>
+        <%= link_to "編集する", edit_address_path(address.id), class: "btn btn-success" %>
         <!-- 削除ボタン -->
-        <%= link_to ""
+        <%= link_to "削除する", destroy_all_path(address.id), method: :deleted, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
        </td>
 　    </tr>
+　    <% end %>
 　   </tbody>
     </table>
-
-    <% end %>
    </div>
-
   </div>
+
  </div>
 </div>
