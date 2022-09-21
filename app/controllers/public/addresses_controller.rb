@@ -21,6 +21,12 @@ class Public::AddressesController < ApplicationController
   end
 
   def update
+   # データレコードを１件取得
+   @address = Address.find(params[:id])
+   # 変更を保存する
+   @address.update(address_params)
+   # 保存後、配送先登録／一覧にリダイレクト
+   redirect_to addresses_path
   end
 
   def destroy

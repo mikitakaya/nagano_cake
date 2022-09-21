@@ -1,2 +1,53 @@
-<h1>Public::Items#index</h1>
-<p>Find me in app/views/public/items/index.html.erb</p>
+<div class="container">
+ <div class="row">
+  <style>
+    .item_image {
+     width: 180px;
+     height: 120px;
+     margin-bottom: 15px;
+    }
+
+    .item_all {
+     display: flex;
+     flex-wrap: wrap;
+    }
+
+    .item {
+     width: 180px;
+     display: inline-block;
+     margin: 10px 30px 15px 0;
+    }
+
+    text {
+     color: rgba(0, 0, 0, 0.6);
+     text-decoration: none;
+    }
+  </style>
+
+  <div class="mx-auto col-10">
+   <h3 style="padding: 10px 0 3%">
+    <span style="background-color: #e6dcdf;">
+     商品一覧（全◯件）
+    </span>
+   </h3>
+
+   <div class="field">
+    <div class="item_all">
+     <% @items.each do |item| %>
+      <div class="item">
+
+       <%= link_to item_path(item.id) do %>
+        <%= image_tag item.image, class: "item_image" %></br>
+       <% end %>
+
+       <%= link_to item_path(item.id) do %>
+        <text><%= item.name %></text></br>
+        <text>¥<%= (item.price * 1.1).floor.to_s(:delimited) %></text></br>
+       <% end %>
+      </div>
+     <% end %>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>

@@ -46,6 +46,11 @@
      text-align: right; /* 文字の右寄せ */
     }
 
+    text {
+     color: rgba(0, 0, 0, 0.6);
+     text-decoration: none;
+    }
+
     /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
     @media screen and (max-width: 768px) {
      .main-visual {
@@ -121,9 +126,14 @@
    <div class="new_item">
     <% @items.each do |item| %>
      <div class="item">
-      <%= image_tag item.image, class: "item_image" %></br>
-      <text><%= item.name %></text></br>
-      <text>¥<%= (item.price * 1.1).floor.to_s(:delimited) %></text></br>
+      <%= link_to item_path(item.id) do %>
+       <%= image_tag item.image, class: "item_image" %></br>
+      <% end %>
+
+      <%= link_to item_path(item.id) do %>
+       <text><%= item.name %></text></br>
+       <text>¥<%= (item.price * 1.1).floor.to_s(:delimited) %></text></br>
+      <% end %>
      </div>
     <% end %>
    </div>

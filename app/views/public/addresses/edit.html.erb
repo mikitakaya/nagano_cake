@@ -1,2 +1,69 @@
-<h1>Public::Addresses#edit</h1>
-<p>Find me in app/views/public/addresses/edit.html.erb</p>
+<div class="container">
+ <div class="row">
+  <style>
+   label {
+    width:220px;
+   }
+
+   .field {
+    margin: 0 0 10px 3%;
+   }
+
+   .address_field {
+    width: 60%;
+   }
+
+   .action {
+    float: right; /* 右寄せ */
+   }
+
+   /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
+   @media screen and (max-width:768px) {
+    .field, label {
+     display: block; /* ブロック要素化して縦並び */
+    }
+
+    .address_field {
+     width: 70%;
+    }
+
+    h3 {
+     font-size: 18px;
+    }
+
+    .field, .btn-success {
+     font-size: 13px;
+    }
+   }
+  </style>
+
+  <div class="col-lg-10 col-md-12", style="margin-bottom:30%">
+   <h3 style="padding: 10px 0 3% 10%">
+    <span style="background-color: #e6dcdf;">
+     配送先編集
+    </span>
+   </h3>
+
+   <%= form_with model: @address do |f| %>
+    <div class="field">
+     <%= f.label :postal_code, "郵便番号（ハイフンなし）" %>
+     <%= f.text_field :postal_code %>
+    </div>
+
+    <div class="field">
+     <%= f.label :address, "住所" %>
+     <%= f.text_field :address, class: "address_field" %>
+    </div>
+
+    <div class="field">
+     <%= f.label :name, "宛名" %>
+     <%= f.text_field :name %>
+     <div class="action">
+      <%= f.submit "変更内容を保存", class: "btn btn-success" %>
+     </div>
+    </div>
+   <% end %>
+
+  </div>
+ </div>
+</div>
