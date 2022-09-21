@@ -17,23 +17,17 @@
     float: right;
    }
 
+   table {
+    margin-bottom: 15%;
+   }
+
    thead {
     background-color: #e6dcdf;
    }
 
-   table {
+   table, th, .address, .actions {
     border: solid rgba(0, 0, 0, 0.6);
    }
-
-   th {
-    border-bottom: solid rgba(0, 0, 0, 0.6);
-    border-right: solid rgba(0, 0, 0, 0.6);
-   }
-
-   .address, .actions {
-    border-right: solid rgba(0, 0, 0, 0.6);
-   }
-
 
    th, .address {
     padding: 20px 20px 20px 5px;
@@ -46,10 +40,9 @@
    .actions {
     width: 30%;
     height: 100%;
-    padding-left: 5px;
+    text-align: center; /* 中央寄せ */
    }
 
-   /* 編集するボタン */
    .btn-success {
     margin-right: 5px;
    }
@@ -57,64 +50,34 @@
    /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
    @media screen and (max-width:768px) {
     .field, label {
-     display: block; /* ブロック要素化して縦並びに */
-    }
-
-    table {
-     border: solid rgba(0, 0, 0, 0.6);
-    }
-
-    th {
-     border-bottom: solid rgba(0, 0, 0, 0.6);
-     border-right: solid rgba(0, 0, 0, 0.6);
-    }
-
-    th:last-child {
-     border-bottom: solid 0;
+     display: block; /* ブロック要素化して縦並び */
     }
 
     .address {
-     border-bottom: solid rgba(0, 0, 0, 0.6);
-    }
-
-    .address, .actions {
-     border-right: solid 0;
+     padding: 10px 20px 10px 5px;
     }
 
     .actions {
-     padding: 20px 0 20px 5px;
+     margin-bottom: 10px;
+     padding: 10px 5px 0 5px;
+     width: 27%;
     }
 
-    .no_thead {
-     height: 78px;
+    .btn-success, .btn-danger {
+     margin-bottom: 10px;
     }
 
-    table, thead {
-     display: block; /* ブロック要素化 */
-     float: left;    /* 左付き */
+    h3 {
+     font-size: 18px;
     }
 
-    table, thead, th {
-     display: block; /* ブロック要素化して縦並び */
-    }
-
-    table, tbody {
-     display: block; /* ブロック要素化 */
-     overflow-x: auto; /* 横スクロールするように */
-     white-space: nowrap; /* 自動で改行されないようにする */
-    }
-
-    table, tbody, tr {
-     display: inline-block; /* インラインブロック要素化してtrが横に並ぶように */
-    }
-
-    table, tbody, .address {
-     display: block; /* ブロック要素化して縦並び */
+    .field, table, .btn-success, .btn-danger {
+     font-size: 13px;
     }
    }
   </style>
 
-  <div class="col-lg-10">
+  <div class="col-lg-10 col-md-12">
    <div class="new_address">
     <h3 style="padding: 10px 0 2% 10%">
     <span style="background-color: #e6dcdf;">
@@ -152,7 +115,7 @@
        <th>郵便番号</th>
        <th>住所</th>
        <th>宛名</th>
-       <th class="no_thead"></th>
+       <th></th>
       </tr>
      </thead>
 
