@@ -21,12 +21,22 @@
     background-color: #e6dcdf;
    }
 
-   table, tr, th, td {
+   table {
     border: solid rgba(0, 0, 0, 0.6);
    }
 
+   th {
+    border-bottom: solid rgba(0, 0, 0, 0.6);
+    border-right: solid rgba(0, 0, 0, 0.6);
+   }
+
+   .address, .actions {
+    border-right: solid rgba(0, 0, 0, 0.6);
+   }
+
+
    th, .address {
-    padding: 10px 25px 10px 5px;
+    padding: 20px 20px 20px 5px;
    }
 
    td {
@@ -34,14 +44,73 @@
    }
 
    .actions {
-    text-align: center;
-    width: 240px;
-    height: 60px;
+    width: 30%;
+    height: 100%;
+    padding-left: 5px;
    }
 
    /* 編集するボタン */
    .btn-success {
-    margin-right: 10px;
+    margin-right: 5px;
+   }
+
+   /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
+   @media screen and (max-width:768px) {
+    .field, label {
+     display: block; /* ブロック要素化して縦並びに */
+    }
+
+    table {
+     border: solid rgba(0, 0, 0, 0.6);
+    }
+
+    th {
+     border-bottom: solid rgba(0, 0, 0, 0.6);
+     border-right: solid rgba(0, 0, 0, 0.6);
+    }
+
+    th:last-child {
+     border-bottom: solid 0;
+    }
+
+    .address {
+     border-bottom: solid rgba(0, 0, 0, 0.6);
+    }
+
+    .address, .actions {
+     border-right: solid 0;
+    }
+
+    .actions {
+     padding: 20px 0 20px 5px;
+    }
+
+    .no_thead {
+     height: 78px;
+    }
+
+    table, thead {
+     display: block; /* ブロック要素化 */
+     float: left;    /* 左付き */
+    }
+
+    table, thead, th {
+     display: block; /* ブロック要素化して縦並び */
+    }
+
+    table, tbody {
+     display: block; /* ブロック要素化 */
+     overflow-x: auto; /* 横スクロールするように */
+     white-space: nowrap; /* 自動で改行されないようにする */
+    }
+
+    table, tbody, tr {
+     display: inline-block; /* インラインブロック要素化してtrが横に並ぶように */
+    }
+
+    table, tbody, .address {
+     display: block; /* ブロック要素化して縦並び */
+    }
    }
   </style>
 
@@ -75,7 +144,7 @@
    </div>
   </div>
 
-  <div class="col-lg-9 col-md-12">
+  <div class="col-lg-10 col-md-12">
    <div class="address_index">
     <table>
      <thead>
@@ -83,7 +152,7 @@
        <th>郵便番号</th>
        <th>住所</th>
        <th>宛名</th>
-       <th></th>
+       <th class="no_thead"></th>
       </tr>
      </thead>
 
