@@ -22,32 +22,42 @@
      color: rgba(0, 0, 0, 0.6);
      text-decoration: none;
     }
+
+    .pagination {
+     justify-content: center;
+    }
+
+    span {
+     margin-right: 10px;
+    }
+
   </style>
 
-  <div class="mx-auto col-10">
+  <div class="mx-auto col-lg-10">
    <h3 style="padding: 10px 0 3%">
     <span style="background-color: #e6dcdf;">
-     商品一覧（全◯件）
+     商品一覧（全<%= @items.count %>件）
     </span>
    </h3>
 
-   <div class="field">
-    <div class="item_all">
-     <% @items.each do |item| %>
-      <div class="item">
+   <div class="item_all">
+    <% @items.each do |item| %>
+     <div class="item">
 
-       <%= link_to item_path(item.id) do %>
-        <%= image_tag item.image, class: "item_image" %></br>
-       <% end %>
+      <%= link_to item_path(item.id) do %>
+       <%= image_tag item.image, class: "item_image" %></br>
+      <% end %>
 
-       <%= link_to item_path(item.id) do %>
-        <text><%= item.name %></text></br>
-        <text>¥<%= (item.price * 1.1).floor.to_s(:delimited) %></text></br>
-       <% end %>
-      </div>
-     <% end %>
-    </div>
+      <%= link_to item_path(item.id) do %>
+       <text><%= item.name %></text></br>
+       <text>¥<%= (item.price * 1.1).floor.to_s(:delimited) %></text></br>
+      <% end %>
+     </div>
+    <% end %>
    </div>
+
+   <%= paginate @items %>
   </div>
+
  </div>
 </div>

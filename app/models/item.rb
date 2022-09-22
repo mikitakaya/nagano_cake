@@ -4,6 +4,9 @@ class Item < ApplicationRecord
  enum is_active: { active: true, no_active: false }
 
  def with_tax_price
-    (price * 1.1).floor
+  (price * 1.1).floor
  end
+
+ Item.count
+
 end

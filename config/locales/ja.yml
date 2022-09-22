@@ -35,3 +35,8 @@
     formats:
      default: "%Y/%m/%d %H:%M:%S"
      short: "%Y/%m/%d"
+
+  views:
+   pagination:
+    next: "Next>"
+    last: "Last>>"
