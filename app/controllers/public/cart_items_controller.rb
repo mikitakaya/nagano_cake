@@ -9,6 +9,7 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy_all
+   current_user.cart_items.destroy_all
   end
 
   def create
