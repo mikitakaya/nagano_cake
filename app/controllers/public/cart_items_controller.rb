@@ -12,6 +12,8 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
+   binding.pry
+   @item = Item.find(cart_item_params[:item_id])
   end
 
   private

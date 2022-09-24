@@ -11,6 +11,30 @@
     height: 38px;
     margin-right: 40px;
    }
+
+   text {
+    font-size:25px;
+   }
+
+   /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
+   @media screen and (max-width: 768px) {
+    .item-image {
+     width: 285px;
+     height: 214px;
+    }
+
+    h4, text {
+     font-size: 18px;
+    }
+
+    .field, .btn-success, .select {
+     font-size: 13px;
+    }
+
+    .select {
+     height: 32px;
+    }
+   }
   </style>
 
   <div class="col-lg-5" style="margin-bottom: 30px;">
@@ -29,17 +53,20 @@
    </div>
 
    <!-- 価格 -->
-   <div class="field">
-    <text style="font-size:25px;">
+   <div class="price">
+    <text>
       ¥ <%= (@item.price * 1.1).floor.to_s(:delimited) %>
     </text>（税込）
    </div>
 
    <div class="field" style="margin-top: 20px;">
-    <%= form_with model: @item do |f| %>
-     <%= f.select :amount, [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]], {prompt: "個数選択"}, class: "select" %>
+    <%= form_with model: @item, url: cart_items_path, method: :get do |f| %>
+     <!-- どの商品を何個カートに追加するか -->
+     <!-- itemというキーに対して、商品idを渡す -->
+     <%= f.hidden_field :id, :value => @item.id %>
+     <!-- amountというキーに対して、個数（1〜10）を渡す -->
+     <%= f.select :amount, *[1..10], {prompt: "個数選択"}, class: "select" %>
      <%= f.submit "カートに入れる", class: "btn btn-success" %>
-     hidden_field
     <% end %>
    </div>
 
@@ -47,7 +74,3 @@
 
  </div>
 </div>
-
-
-
-

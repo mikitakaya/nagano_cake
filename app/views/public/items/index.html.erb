@@ -1,35 +1,46 @@
 <div class="container">
  <div class="row">
   <style>
-    .item_image {
-     width: 180px;
-     height: 120px;
-     margin-bottom: 15px;
+   .item_image {
+    width: 180px;
+    height: 120px;
+    margin-bottom: 15px;
+   }
+
+   .item_all {
+    display: flex;
+    flex-wrap: wrap;
+   }
+
+   .item {
+    width: 180px;
+    display: inline-block;
+    margin: 10px 30px 15px 0;
+   }
+
+   text {
+    color: rgba(0, 0, 0, 0.6);
+    text-decoration: none;
+   }
+
+   .pagination {
+    justify-content: center;
+   }
+
+   .page, .current, .next, .last, .first, .prev  {
+    margin-right: 10px;
+   }
+
+   /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
+   @media screen and (max-width: 768px) {
+    h3 {
+     font-size: 20px;
     }
 
-    .item_all {
-     display: flex;
-     flex-wrap: wrap;
+    .item_all, .pagination {
+     font-size: 13px;
     }
-
-    .item {
-     width: 180px;
-     display: inline-block;
-     margin: 10px 30px 15px 0;
-    }
-
-    text {
-     color: rgba(0, 0, 0, 0.6);
-     text-decoration: none;
-    }
-
-    .pagination {
-     justify-content: center;
-    }
-
-    span {
-     margin-right: 10px;
-    }
+   }
   </style>
 
   <div class="mx-auto col-lg-10">
@@ -40,7 +51,7 @@
    </h3>
 
    <div class="item_all">
-    <% @items.each do |item| %>
+    <% @item.each do |item| %>
      <div class="item">
 
       <%= link_to item_path(item.id) do %>
@@ -55,7 +66,7 @@
     <% end %>
    </div>
 
-   <%= paginate @items %>
+   <%= paginate @item %>
   </div>
 
  </div>

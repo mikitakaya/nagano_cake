@@ -1,6 +1,14 @@
 class Customer < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
+  # customer（1）はaddress（N）を複数持っている
+  has_many :addresses
+  # customer（1）はcart_item（N）を複数持っている
+  has_many :cart_items
+  # customer（1）はorder（N）を複数持っている
+  has_many :orders
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
