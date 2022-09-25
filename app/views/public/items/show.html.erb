@@ -60,10 +60,10 @@
    </div>
 
    <div class="field" style="margin-top: 20px;">
-    <%= form_with model: @item, url: cart_items_path, method: :get do |f| %>
+    <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
      <!-- どの商品を何個カートに追加するか -->
      <!-- itemというキーに対して、商品idを渡す -->
-     <%= f.hidden_field :id, :value => @item.id %>
+     <%= f.hidden_field :item_id, :value => @item.id %>
      <!-- amountというキーに対して、個数（1〜10）を渡す -->
      <%= f.select :amount, *[1..10], {prompt: "個数選択"}, class: "select" %>
      <%= f.submit "カートに入れる", class: "btn btn-success" %>
