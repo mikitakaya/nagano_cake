@@ -1,19 +1,25 @@
 class Public::CartItemsController < ApplicationController
   def index
+   # ログインカスタマーのカート内商品データを全て取得する
    @cart_items = current_customer.cart_items.all
    @total = 0
   end
 
   def update
-
+   # 登録済みのデータを取得する
    cart_item = CartItem.find(params[:id])
+   # カート内商品情報を個別で更新する
    cart_item.update(cart_item_params)
+   # 更新後、カート内商品一覧画面にリダイレクト
    redirect_to cart_items_path
   end
-
+ß
   def destroy
+   # 登録済みのデータを取得する
    cart_item = CartItem.find(params[:id])
+   # カート内商品情報を個別で削除する
    cart_item.destroy
+   # 削除後、カート内商品一覧画面にリダイレクト
    redirect_to cart_items_path
   end
 
@@ -22,14 +28,37 @@ class Public::CartItemsController < ApplicationController
    @cart_items = CartItem.all
    # ログイン中のユーザーが、カート内商品を全て削除する
    current_customer.cart_items.destroy_all
-   # 削除後、カート画面へリダイレクト
+   # 削除後、カート内商品一覧画面にリダイレクト
    redirect_to cart_items_path
   end
 
   def create
+   # 登録済みのデータを取得する
    @item = Item.find(cart_item_params[:item_id])
+   # カートに新規レコードを作成する
    @cart_item = current_customer.cart_items.new(cart_item_params)
-   @cart_item.save
+   # カート内商品／顧客ID ＝　ログイン中のカスタマー
+   @cart_item.customer_id = current_customer.id
+   # ログイン中のカスタマーの全てのカート内商品を意味する
+   @cart_items = current_customer.cart_items.all
+
+   # カート内商品の数だけ繰り返し処理を行う
+   @cart_items.each do |cart_item|
+    # カート内商品ID ＝　新規追加商品だった場合
+    if cart_item.item_id == @cart_item.item_id
+     # カート内商品の数量＋新規追加商品の数量を合算する
+     new_amount = cart_item.amount + @cart_item.amount
+     # カート内商品を合算した数量に更新する
+     cart_item.update_attribute(:amount, new_amount)
+     # 新規レコードの重複商品は削除する
+     @cart_item.delete
+    # 上記に当てはまらない場合
+    else
+     # 新規レコードを保存する
+     @cart_item.save
+    end
+   end
+   # 全ての処理が終了したのち、カート内商品一覧画面にリダイレクト
    redirect_to cart_items_path
   end
 

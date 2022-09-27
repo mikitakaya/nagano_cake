@@ -20,7 +20,10 @@ class Public::OrdersController < ApplicationController
   # 注文情報確認画面
   def confirm
    @order = Order.new(order_params)
-   binding.pry
+   @address = Address.find(params[:order][:address_id])
+   @order.postal_code = @address.postal_code
+   @order.address = @address.address
+   @order.name = @address.name
   end
 
   # 注文完了画面

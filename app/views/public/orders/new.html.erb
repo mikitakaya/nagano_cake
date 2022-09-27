@@ -17,7 +17,7 @@
     margin: 0 0 20px 20px;
    }
 
-   label {
+   .order_new > label {
     width: 200px;
    }
 
@@ -42,7 +42,7 @@
     </span>
    </h3>
 
-   <!-- 注文情報確認画面に情報をくるため、URLはconfirm_pathにする -->
+   <!-- 注文情報確認画面に情報を送るため、URLはconfirm_pathにする -->
    <%= form_with model: @order, url: confirm_path, local: true do |f| %>
     <div class="payment">
      <h5>
@@ -68,7 +68,9 @@
 
       <div class="customer">
        <!-- ログイン中のカスタマーの登録郵便番号 -->
-       <text style="margin-right: 10px;">〒<%= current_customer.postal_code %></text>
+       <text style="margin-right: 10px;">
+        〒<%= current_customer.postal_code %>
+       </text>
        <!-- ログイン中のカスタマーの登録住所 -->
        <%= current_customer.address %></br>
        <!-- ログイン中のカスタマーの登録氏名 -->
