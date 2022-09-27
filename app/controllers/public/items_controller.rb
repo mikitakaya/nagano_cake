@@ -12,7 +12,7 @@ class Public::ItemsController < ApplicationController
   end
 
   private
-
+  # 商品データのストロングパラメータ
   def item_params
    params.require(:item).permit(:name, :introduction, :price)
   end
