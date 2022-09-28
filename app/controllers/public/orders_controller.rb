@@ -21,16 +21,23 @@ class Public::OrdersController < ApplicationController
   # 注文情報確認画面
   def confirm
    @order = Order.new(order_params)
+   # 
    if params[:order][:select_address] == "0"
     @order.postal_code = current_customer.postal_code
     @order.address = current_customer.address
     @order.name = current_customer.full_name
+   elsif params[:order][:select_address] == "1"
+    @address = Address.find(params[:order][:address_id])
+    @order.postal_code = @address.postal_code
+    @order.address =  @address.address
+    @order.name = @address.name
+   elsif params[:order][:select_address] == "2"
+    @order.postal_code = params[:order][:postal_code]
+    @order.address = params[:order][:address]
+    @order.name = params[:order][:name]
+   else
+    render :new
    end
-   # @address = Address.find(params[:order][:address_id])
-   # @order.postal_code = @address.postal_code
-   # @order.address = @address.address
-   # @order.name = @address.name
-
    # 全てのカート内商品
    @cart_items = CartItem.all
    @shipping_fee = 800
