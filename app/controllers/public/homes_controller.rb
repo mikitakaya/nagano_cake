@@ -1,6 +1,8 @@
 class Public::HomesController < ApplicationController
   def top
-    @items = Item.all.limit(4).order("created_at DESC")
+    # order("created_at DESC") = 一覧表示を最新から表示
+    # limit(4) = 表示4件まで
+    @items = Item.all.order("created_at DESC").limit(4)
   end
 
   def about

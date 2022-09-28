@@ -1,2 +1,99 @@
-<h1>Public::Orders#confirm</h1>
-<p>Find me in app/views/public/orders/confirm.html.erb</p>
+<div class="container">
+ <div class="row">
+  <style>
+   .item-image {
+    width: 48px;
+    height: 35px;
+   }
+
+   table, th, td {
+    border: solid rgba(0, 0, 0, 0.6);
+   }
+
+   th {
+    background-color: #e6dcdf;
+    padding: 15px 10px;
+   }
+
+   td {
+    padding: 10px;
+   }
+
+   td {
+    background-color: #fbf5f7;
+    color: rgba(0, 0, 0, 0.6);
+   }
+
+   .table2 {
+    padding-left: 20%;
+   }
+  </style>
+
+  <div class="col-lg-12 mx-auto">
+   <h3 style="padding: 10px 0 2% 10%">
+    <span style="background-color: #e6dcdf;">
+     注文情報確認
+    </span>
+   </h3>
+
+    <table align="left">
+     <thead>
+      <tr>
+       <th>商品名</th>
+       <th>単価（税込）</th>
+       <th>数量</th>
+       <th>小計</th>
+      </tr>
+     </thead>
+
+     <tbody class="table1">
+      <% @cart_items.each do |cart_item| %>
+       <tr>
+        <td>
+         <!-- 商品画像 -->
+         <%= image_tag cart_item.item.image, class: "item-image" %>
+         <!-- 商品名 -->
+         <%= cart_item.item.name %>
+        </td>
+
+        <td>
+         <!-- 単価（税込） -->
+         <%= (cart_item.item.with_tax_price).floor.to_s(:delimited) %>
+        </td>
+
+        <td>
+         <!-- 数量 -->
+         <%= cart_item.amount %>
+        </td>
+
+        <td>
+         <!-- 小計 -->
+         <%= cart_item.subtotal.floor.to_s(:delimited) %>
+        </td>
+       </tr>
+      <% end %>
+     </tbody>
+    </table>
+
+    <table class="table2">
+     <tbody>
+      <tr>
+       <th>送料</th>
+       <td><%= @shipping_fee.to_i %></td>
+      </tr>
+
+      <tr>
+       <th>商品合計</th>
+       <td><%= @total.to_s(:delimited) %></td>
+      </tr>
+
+      <tr>
+       <th>請求金額</th>
+       <td><%= @bill.to_s(:delimited) %></td>
+      </tr>
+     </tbody>
+    </table>
+  </div>
+
+ </div>
+</div>

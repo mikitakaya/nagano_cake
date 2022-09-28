@@ -42,15 +42,15 @@ class Public::CartItemsController < ApplicationController
    # ログイン中のカスタマーの全てのカート内商品を意味する
    @cart_items = current_customer.cart_items.all
 
-   # カート内商品の数だけ繰り返し処理を行う
+   # カートの中身を一個ずつ取り出す
    @cart_items.each do |cart_item|
     # カート内商品ID ＝　新規追加商品IDだった場合
     if cart_item.item_id == @cart_item.item_id
-     # カート内商品の数量＋新規追加商品の数量を合算する
+     # カート内商品の数量＋新規追加商品の数量を合算し、new_amountに代入
      new_amount = cart_item.amount + @cart_item.amount
-     # カート内商品を合算した数量に更新する
+     # cart_itemモデルのamountをnew_amountに更新する
      cart_item.update_attribute(:amount, new_amount)
-     # 新規レコードの重複商品は削除する
+     # 重複商品は削除する
      @cart_item.delete
     # 上記に当てはまらない場合
     else

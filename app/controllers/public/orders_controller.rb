@@ -1,6 +1,7 @@
 class Public::OrdersController < ApplicationController
   # 注文情報入力画面(支払方法・配送先の選択)
   def new
+   # Viewへ渡すためのインスタンス変数に空のModelオブジェクトを生成する
    @order = Order.new
   end
 
@@ -19,6 +20,18 @@ class Public::OrdersController < ApplicationController
 
   # 注文情報確認画面
   def confirm
+   # 全てのカート内商品
+   @cart_items = CartItem.all
+   @shipping_fee = 800
+
+   # カートの中身を一個ずつ取り出す
+   @cart_items.each do |cart_item|
+    # 小計金額の合計を@totalに代入
+    @total = cart_item.subtotal
+   end
+   # @total（小計金額の合計）と@shipping_fee（送料）の合算を@billに代入する
+   @bill = @total + @shipping_fee
+
    @order = Order.new(order_params)
    @address = Address.find(params[:order][:address_id])
    @order.postal_code = @address.postal_code
@@ -30,10 +43,15 @@ class Public::OrdersController < ApplicationController
   def complete
   end
 
+  # 小計を求めるメソッド
+  def subtotal
+   item.with_tax_price * amount
+  end
+
   private
   # オーダーデータのストロングパラメータ
   def order_params
-   params.require(:order).permit(:payment_method, :postal_code, :address, :name)
+   params.require(:order).permit(:customer_id, :postal_code, :address, :name, :shipping_fee, :bill, :payment_method, :order_status)
   end
 
 end
