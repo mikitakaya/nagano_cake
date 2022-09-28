@@ -36,25 +36,25 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
       t.timestamps null: false
 
       # 姓を保存するカラム
-      t.string :last_name
+      t.string :last_name, null: false
 
       # 名を保存するカラム
-      t.string :first_name
+      t.string :first_name, null: false
 
       # 姓カナを保存するカラム
-      t.string :last_name_kana
+      t.string :last_name_kana, null: false
 
       # 名カナを保存するカラム
-      t.string :first_name_kana
+      t.string :first_name_kana, null: false
 
       # 郵便番号を保存するカラム
-      t.string :postal_code
+      t.string :postal_code, null: false
 
       # 住所を保存するカラム
-      t.string :address
+      t.string :address, null: false
 
       # 電話番号を保存するカラム
-      t.string :telephone_number
+      t.string :telephone_number, null: false
 
     end
 

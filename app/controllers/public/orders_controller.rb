@@ -16,7 +16,35 @@ class Public::OrdersController < ApplicationController
 
   # 注文確定処理
   def create
+   # データを受け取り新規登録するためのインスタンス作成
+   @order = Order.new(order_params)
+   # 新規オーダーのカスタマーID ＝　ログイン中のカスタマーID
+   @order.customer_id = current_customer.id
+   # 新規オーダーを保存する
+   @order.save
+
+   # 注文詳細（order_details）の保存
+   #カートの商品を1つずつ取り出す
+   current_customer.cart_items.each do |cart_item|
+    # Viewへ渡すためのインスタンス変数に空のModelオブジェクトを生成する
+    @order_detail = Orderdetail.new
+    # 注文詳細の商品IDにカート内商品の商品IDを代入する
+    @order_detail.item_id = cart_item.item_id
+    # 注文詳細の数量にカート内商品の数量を代入する
+    @order_detail.quantity = cart_item.amount
+    # 購入時価格（税込）にカート内商品の小計を代入する
+    @order_detail.purchase_amount = cart_item.subtotal
+    # 注文詳細IDに注文IDを紐付ける
+    @order_detail.id = @order.id
+    # 注文詳細を保存する
+    @order_detail.save
+   end
+
+   # カート内商品を全て削除する
+   current_customer.cart_items.destroy_all
+   redirect_to complete_path
   end
+
 
   # 注文情報確認画面
   def confirm

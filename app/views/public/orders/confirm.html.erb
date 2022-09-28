@@ -125,8 +125,26 @@
     <%= @order.name %>
    </div>
 
-   <div class="action">
-    <%= form_with model: @order, url: orders_path method: :post do |f| %>
+   <div class="action", style="text-align: center;">
+    <%= form_with model: @order, url: orders_path, method: :post do |f| %>
+     <!-- 顧客ID -->
+     <%= f.hidden_field :customer_id %>
+     <!-- 配送先郵便番号 -->
+     <%= f.hidden_field :postal_code %>
+     <!-- 配送先住所 -->
+     <%= f.hidden_field :address %>
+     <!-- 配送先氏名 -->
+     <%= f.hidden_field :name %>
+     <!-- 送料 -->
+     <%= f.hidden_field :shipping_fee %>
+     <!-- 請求金額 -->
+     <%= f.hidden_field :bill %>
+     <!-- 支払方法 -->
+     <%= f.hidden_field :payment_method %>
+     <!-- 受注ステータス -->
+     <%= f.hidden_field :order_status %>
+
+     <%= f.submit "注文を確定する", class: "btn btn-success" %>
     <% end %>
    </div>
   </div>
