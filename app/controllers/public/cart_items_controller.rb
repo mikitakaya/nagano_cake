@@ -13,7 +13,7 @@ class Public::CartItemsController < ApplicationController
    # 更新後、カート内商品一覧画面にリダイレクト
    redirect_to cart_items_path
   end
-ß
+
   def destroy
    # 登録済みのデータを取得する
    cart_item = CartItem.find(params[:id])
@@ -44,7 +44,7 @@ class Public::CartItemsController < ApplicationController
 
    # カート内商品の数だけ繰り返し処理を行う
    @cart_items.each do |cart_item|
-    # カート内商品ID ＝　新規追加商品だった場合
+    # カート内商品ID ＝　新規追加商品IDだった場合
     if cart_item.item_id == @cart_item.item_id
      # カート内商品の数量＋新規追加商品の数量を合算する
      new_amount = cart_item.amount + @cart_item.amount

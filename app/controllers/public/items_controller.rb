@@ -7,6 +7,7 @@ class Public::ItemsController < ApplicationController
   end
 
   def show
+   # 登録済みのデータを取得する
    @item = Item.find(params[:id])
    @cart_item = CartItem
   end

@@ -13,11 +13,11 @@
     margin-bottom: 20px;
    }
 
-   .customer, select, .order_new {
+   .customer, select, .new_address {
     margin: 0 0 20px 20px;
    }
 
-   .order_new > label {
+   .new_address > label {
     width: 200px;
    }
 
@@ -33,10 +33,28 @@
     text-align: center;
    }
 
+   /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
+   @media screen and (max-width:768px) {
+    h3 {
+     font-size: 20px;
+    }
+
+    h5 {
+     font-size: 18px;
+    }
+
+    .radio_button, .btn-primary {
+     font-size: 13px;
+    }
+
+    .new_address > label {
+     width: 160px;
+    }
+   }
   </style>
 
   <div class="col-lg-11 mx-auto">
-   <h3 style="padding: 10px 0 2% 80px;">
+   <h3 style="padding: 10px 0 2% 10%;">
     <span style="background-color: #e6dcdf;">
      注文情報入力
     </span>
@@ -83,7 +101,7 @@
 
       <%= f.radio_button :select_address, 2 %>
       <%= f.label :select_address_2, "新しいお届け先" %></br>
-      <div class="order_new">
+      <div class="new_address">
        <%= f.label :postal_code, "郵便番号（ハイフンなし）" %>
        <%= f.text_field :postal_code %></br>
 
