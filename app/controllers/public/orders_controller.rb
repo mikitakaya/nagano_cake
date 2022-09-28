@@ -20,6 +20,17 @@ class Public::OrdersController < ApplicationController
 
   # 注文情報確認画面
   def confirm
+   @order = Order.new(order_params)
+   if params[:order][:select_address] == "0"
+    @order.postal_code = current_customer.postal_code
+    @order.address = current_customer.address
+    @order.name = current_customer.full_name
+   end
+   # @address = Address.find(params[:order][:address_id])
+   # @order.postal_code = @address.postal_code
+   # @order.address = @address.address
+   # @order.name = @address.name
+
    # 全てのカート内商品
    @cart_items = CartItem.all
    @shipping_fee = 800
@@ -31,12 +42,6 @@ class Public::OrdersController < ApplicationController
    end
    # @total（小計金額の合計）と@shipping_fee（送料）の合算を@billに代入する
    @bill = @total + @shipping_fee
-
-   @order = Order.new(order_params)
-   @address = Address.find(params[:order][:address_id])
-   @order.postal_code = @address.postal_code
-   @order.address = @address.address
-   @order.name = @address.name
   end
 
   # 注文完了画面

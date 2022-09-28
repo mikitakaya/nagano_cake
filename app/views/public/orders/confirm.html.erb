@@ -17,15 +17,30 @@
 
    td {
     padding: 10px;
-   }
-
-   td {
     background-color: #fbf5f7;
     color: rgba(0, 0, 0, 0.6);
    }
 
-   .table2 {
-    padding-left: 20%;
+   th, td {
+    width: 120px;
+   }
+
+   .first {
+    width: 350px;
+   }
+
+   .table1 {
+    margin-right: 5%;
+   }
+
+   .cart_items {
+    margin-bottom: 100px;
+   }
+
+   label {
+    font-weight: bold;
+    width: 70px;
+    margin-right: 20px;
    }
   </style>
 
@@ -36,20 +51,21 @@
     </span>
    </h3>
 
-    <table align="left">
+   <div class="cart_items">
+    <table align="left", class="table1">
      <thead>
       <tr>
-       <th>商品名</th>
+       <th class="first">商品名</th>
        <th>単価（税込）</th>
        <th>数量</th>
        <th>小計</th>
       </tr>
      </thead>
 
-     <tbody class="table1">
+     <tbody>
       <% @cart_items.each do |cart_item| %>
        <tr>
-        <td>
+        <td class="first">
          <!-- 商品画像 -->
          <%= image_tag cart_item.item.image, class: "item-image" %>
          <!-- 商品名 -->
@@ -93,6 +109,21 @@
       </tr>
      </tbody>
     </table>
+   </div>
+
+   <div class="payment", style="margin-bottom: 20px;">
+    <label for="payment_method">支払方法</label>
+    <%= @order.payment_method_i18n %>
+   </div>
+   <div class="address">
+    <label for="address">お届け先</label>
+    <text style="margin-right: 10px;">
+     〒<%= @order.postal_code %>
+    </text>
+    <%= @order.address %></br>
+    <label></label>
+    <%= @order.name %>
+   </div>
   </div>
 
  </div>
