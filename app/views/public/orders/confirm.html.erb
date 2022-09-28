@@ -126,6 +126,7 @@
    </div>
 
    <div class="action", style="text-align: center;">
+    <!-- 注文確定処理（create）を行うため、createのURL、createのmethodを設定 -->
     <%= form_with model: @order, url: orders_path, method: :post do |f| %>
      <!-- 顧客ID -->
      <%= f.hidden_field :customer_id %>
