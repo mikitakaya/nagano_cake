@@ -17,10 +17,6 @@
     width: auto;
    }
 
-   text {
-    padding-right: 15%;
-   }
-
    text:last-child {
     padding: 0;
    }
@@ -87,8 +83,10 @@
 
     <div class="field">
      <label for="admin_item_is_active">販売ステータス</label>
-     <%= f.radio_button :is_active, "active" %> <text>販売中</text>
-     <%= f.radio_button :is_active, "no_active" %> <text>販売停止中</text>
+     <%= f.radio_button :is_active, "active" %>
+     <%= f.label :is_active_active, "販売中" %>
+     <%= f.radio_button :is_active, "no_active" %>
+     <%= f.label :is_active_no_active, "販売停止中" %>
     </div>
 
     <div class="input_wrap">
