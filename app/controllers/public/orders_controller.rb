@@ -20,35 +20,47 @@ class Public::OrdersController < ApplicationController
 
   # 注文情報確認画面
   def confirm
-   @order = Order.new(order_params)
-   # 
-   if params[:order][:select_address] == "0"
-    @order.postal_code = current_customer.postal_code
-    @order.address = current_customer.address
-    @order.name = current_customer.full_name
-   elsif params[:order][:select_address] == "1"
-    @address = Address.find(params[:order][:address_id])
-    @order.postal_code = @address.postal_code
-    @order.address =  @address.address
-    @order.name = @address.name
-   elsif params[:order][:select_address] == "2"
-    @order.postal_code = params[:order][:postal_code]
-    @order.address = params[:order][:address]
-    @order.name = params[:order][:name]
-   else
-    render :new
-   end
    # 全てのカート内商品
    @cart_items = CartItem.all
    @shipping_fee = 800
+   @total = 0
 
-   # カートの中身を一個ずつ取り出す
    @cart_items.each do |cart_item|
-    # 小計金額の合計を@totalに代入
-    @total = cart_item.subtotal
+    @total += cart_item.subtotal
    end
-   # @total（小計金額の合計）と@shipping_fee（送料）の合算を@billに代入する
    @bill = @total + @shipping_fee
+
+   # データを受け取り新規登録するためのインスタンス作成
+   @order = Order.new(order_params)
+   # [:select_address]=="0"のデータ（顧客の住所）を呼び出す
+   if params[:order][:select_address] == "0"
+    # ログインユーザーの登録郵便番号
+    @order.postal_code = current_customer.postal_code
+    # ログインユーザーの登録住所
+    @order.address = current_customer.address
+    # ログインユーザーの登録氏名
+    @order.name = current_customer.full_name
+
+   # 上記条件に当てはまらない場合、[:select_address]=="1"のデータ（登録済みの配送先）を呼び出す
+   elsif params[:order][:select_address] == "1"
+    # 配送先として登録済みのデータを取得する
+    @address = Address.find(params[:order][:address_id])
+    # 登録済みの配送先郵便番号
+    @order.postal_code = @address.postal_code
+    # 登録済みの配送先住所
+    @order.address =  @address.address
+    # 登録済みの宛名
+    @order.name = @address.name
+
+   # 上記二つの条件に当てはまらない場合、[:select_address]=="2"のデータ（新しい配送先）を呼び出す
+   elsif params[:order][:select_address] == "2"
+    # 新たな配送先の郵便番号
+    @order.postal_code = params[:order][:postal_code]
+    # 新たな配送先の住所
+    @order.address = params[:order][:address]
+    # 新たな配送先の宛名
+    @order.name = params[:order][:name]
+   end
   end
 
   # 注文完了画面

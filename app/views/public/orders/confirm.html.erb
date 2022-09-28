@@ -124,6 +124,11 @@
     <label></label>
     <%= @order.name %>
    </div>
+
+   <div class="action">
+    <%= form_with model: @order, url: orders_path method: :post do |f| %>
+    <% end %>
+   </div>
   </div>
 
  </div>

@@ -6,7 +6,7 @@
    }
 
    .radio_button {
-    margin-left: 40px;
+    margin-left: 5%;
    }
 
    .payment, .addresses {
@@ -81,7 +81,7 @@
      </h5>
 
      <div class="radio_button">
-      <%= f.radio_button :select_address, 0 %>
+      <%= f.radio_button :select_address, 0, {:checked => true} %>
       <%= f.label :select_address_0, "ご自身の住所" %></br>
 
       <div class="customer">
