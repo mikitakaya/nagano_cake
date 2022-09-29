@@ -4,6 +4,7 @@ class Public::AddressesController < ApplicationController
    @address = Address.new
    # 全ての配送先データを取得する
    @addresses = Address.all
+   # binding.pry
   end
 
   def edit
@@ -14,6 +15,8 @@ class Public::AddressesController < ApplicationController
   def create
    # データを受け取り新規登録するためのインスタンス作成
    @address = Address.new(address_params)
+   # customer_idはログイン中のカスタマーIDと定義する
+   @address.customer_id = current_customer.id
    # データをデータベースに保存する
    @address.save
    # 配送先新規登録後、配送先登録／一覧にリダイレクト
@@ -41,7 +44,7 @@ class Public::AddressesController < ApplicationController
   private
   # 配送先データのストロングパラメータ
   def address_params
-   params.require(:address).permit(:postal_code, :address, :name)
+   params.require(:address).permit(:customer_id, :postal_code, :address, :name)
   end
 
 end

@@ -18,16 +18,18 @@ class Public::OrdersController < ApplicationController
   def create
    # データを受け取り新規登録するためのインスタンス作成
    @order = Order.new(order_params)
+   # binding.pry
    # 新規オーダーのカスタマーID ＝　ログイン中のカスタマーID
-   @order.customer_id = current_customer.id
+   # @customer = current_customer.id
    # 新規オーダーを保存する
    @order.save
+   # binding.pry
 
    # 注文詳細（order_details）の保存
    #カートの商品を1つずつ取り出す
    current_customer.cart_items.each do |cart_item|
     # Viewへ渡すためのインスタンス変数に空のModelオブジェクトを生成する
-    @order_detail = Orderdetail.new
+    @order_detail = OrderDetail.new
     # 注文詳細の商品IDにカート内商品の商品IDを代入する
     @order_detail.item_id = cart_item.item_id
     # 注文詳細の数量にカート内商品の数量を代入する
@@ -42,6 +44,7 @@ class Public::OrdersController < ApplicationController
 
    # カート内商品を全て削除する
    current_customer.cart_items.destroy_all
+   # 注文完了画面にリダイレクトする
    redirect_to complete_path
   end
 
@@ -103,7 +106,7 @@ class Public::OrdersController < ApplicationController
   private
   # オーダーデータのストロングパラメータ
   def order_params
-   params.require(:order).permit(:customer_id, :postal_code, :address, :name, :shipping_fee, :bill, :payment_method, :order_status)
+   params.require(:order).permit(:customer_id, :postal_code, :address, :name, :bill, :payment_method, :order_status)
   end
 
 end

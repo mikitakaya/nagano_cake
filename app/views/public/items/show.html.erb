@@ -62,6 +62,8 @@
    <div class="field" style="margin-top: 20px;">
     <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
      <!-- どの商品を何個カートに追加するか -->
+     <!-- customer_idというキーに対して、ログイン中のカスタマーIDを渡す -->
+     <%= f.hidden_field :customer_id, :value => @customer_id %>
      <!-- itemというキーに対して、商品idを渡す -->
      <%= f.hidden_field :item_id, :value => @item.id %>
      <!-- amountというキーに対して、個数（1〜10）を渡す -->

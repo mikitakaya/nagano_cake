@@ -10,11 +10,12 @@ class Public::ItemsController < ApplicationController
    # 登録済みのデータを取得する
    @item = Item.find(params[:id])
    @cart_item = CartItem
+   @customer_id = current_customer.id
   end
 
   private
   # 商品データのストロングパラメータ
   def item_params
-   params.require(:item).permit(:name, :introduction, :price)
+   params.require(:item).permit(:genre_id, :name, :introduction, :price, :is_active)
   end
 end
