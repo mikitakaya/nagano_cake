@@ -129,7 +129,7 @@
     <!-- 注文確定処理（create）を行うため、createのURL、createのmethodを設定 -->
     <%= form_with model: @order, url: orders_path, method: :post do |f| %>
      <!-- 顧客ID -->
-     <%= f.hidden_field :customer_id, :value => current_customer.id %>
+     <%= f.hidden_field :customer_id, :value => @customer %>
      <!-- 配送先郵便番号 -->
      <%= f.hidden_field :postal_code %>
      <!-- 配送先住所 -->

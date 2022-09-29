@@ -18,12 +18,8 @@ class Public::OrdersController < ApplicationController
   def create
    # データを受け取り新規登録するためのインスタンス作成
    @order = Order.new(order_params)
-   # binding.pry
-   # 新規オーダーのカスタマーID ＝　ログイン中のカスタマーID
-   # @customer = current_customer.id
    # 新規オーダーを保存する
    @order.save
-   # binding.pry
 
    # 注文詳細（order_details）の保存
    #カートの商品を1つずつ取り出す
@@ -55,6 +51,9 @@ class Public::OrdersController < ApplicationController
    @cart_items = CartItem.all
    @shipping_fee = 800
    @total = 0
+
+   # 新規オーダーのカスタマーID ＝　ログイン中のカスタマーID
+   @customer = current_customer.id
 
    @cart_items.each do |cart_item|
     @total += cart_item.subtotal
