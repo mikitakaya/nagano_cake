@@ -1,10 +1,4 @@
 class Public::OrdersController < ApplicationController
-  # def destroy
-  #  order = Order.find(params[:id])
-  #  order.destroy
-  #  redirect_to '/orders'
-  # end
-
   # 注文情報入力画面(支払方法・配送先の選択)
   def new
    # Viewへ渡すためのインスタンス変数に空のModelオブジェクトを生成する
@@ -18,6 +12,17 @@ class Public::OrdersController < ApplicationController
 
   # 注文履歴詳細画面
   def show
+   # レコードを1件だけ取得
+   @order = Order.find(params[:id])
+   # 配送料は800円
+   @shipping_fee = 800
+
+   @total = 0
+   # order.idに紐づく全ての注文詳細を出す
+   @order.order_details.each do |order_detail|
+    # order_detail.purchase_amountに購入時価格（カートに入れていた商品の小計）が入っている
+    @total += order_detail.purchase_amount
+   end
   end
 
   # 注文確定処理
@@ -107,6 +112,17 @@ class Public::OrdersController < ApplicationController
   def subtotal
    item.with_tax_price * amount
   end
+
+  # 消費税を求めるメソッド
+  def with_tax_price
+   (price * 1.1).floor
+  end
+
+  # def destroy
+  #  @order = Order.find(params[:id])
+  #  @order.destroy
+  #  redirect_to '/orders'
+  # end
 
   private
   # オーダーデータのストロングパラメータ

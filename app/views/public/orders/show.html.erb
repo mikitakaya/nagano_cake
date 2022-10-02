@@ -1,17 +1,175 @@
 <div class="container">
  <div class="row">
   <style>
+  h5 {
+   font-weight: bold;
+  }
+
+   table, tr, th, td {
+    border: solid rgba(0, 0, 0, 0.6);
+   }
+
+   th {
+    background-color: #e6dcdf;
+   }
+
+   td {
+    background-color: #fbf5f7;
+    padding: 10px 0 10px 10px;
+   }
+
+   .table1 > tbody > tr > th,
+   .table2 > tbody > tr > th,
+   .table2 > tbody > tr > td {
+    width: 130px;
+    height: 50px;
+    padding-left: 10px;
+   }
+
+   .table1 > tbody > tr > td {
+    width: 400px;
+   }
+
+   .table1, .table2 {
+    margin-bottom: 40px;
+   }
+
+   .table3 {
+    margin-bottom: 10%;
+   }
+
+   .name {
+    width: 400px;
+   }
+
+   .price {
+    width: 120px;
+   }
+
+   .quantity, .purchase_amount {
+    width: 80px;
+   }
+
+   .name, .price, .quantity, .purchase_amount {
+    padding: 10px 0 10px 10px;
+   }
+
+   /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
+   @media screen and (max-width:768px) {
+    h3 {
+     font-size: 20px;
+    }
+
+    h5 {
+     font-size: 18px;
+    }
+
+    table {
+     font-size: 13px;
+    }
+   }
 
   </style>
 
   <div class="col-lg-12 mx-auto">
-   <h3 style="padding: 10px 0 2% 10%;">
+   <h3 style="padding: 10px 0 3% 10%;">
     <span style="background-color: #e6dcdf;">
      注文履歴詳細
     </span>
    </h3>
   </div>
-  
-  <div class="col-lg-"
+
+  <div class="col-lg-6">
+   <h5>注文情報</h5>
+   <table class="table1">
+    <tbody>
+     <tr>
+      <th>注文日</th>
+      <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+     </tr>
+
+     <tr>
+      <th>配送先</th>
+      <td>
+       <!-- 郵便番号 -->
+       〒<%= @order.postal_code %></br>
+       <!-- 住所 -->
+       <%= @order.address %></br>
+       <!-- 宛名 -->
+       <%= @order.name %>
+      </td>
+     </tr>
+
+     <tr>
+      <th>支払方法</th>
+      <td><%= @order.payment_method_i18n %></td>
+     </tr>
+
+     <tr>
+      <th>ステータス</th>
+      <td><%= @order.order_status_i18n %></td>
+     </tr>
+    </tbody>
+   </table>
+  </div>
+
+  <div class="col-lg-5">
+   <h5>請求情報</h5>
+   <table class="table2">
+    <tbody>
+     <tr>
+      <th>商品合計</th>
+      <td><%= @total.to_s(:delimited) %></td>
+     </tr>
+
+     <tr>
+      <th>送料</th>
+      <td><%= @shipping_fee %></td>
+     </tr>
+
+     <tr>
+      <th>ご請求額</th>
+      <td><%= @order.bill.to_s(:delimited) %></td>
+     </tr>
+    </tbody>
+   </table>
+  </div>
+
+  <div class="col-lg-10">
+   <h5 >注文内容</h5>
+
+   <table class="table3">
+    <thead>
+     <tr>
+      <th class="name">商品</th>
+      <th class="price">単価（税込）</th>
+      <th class="quantity">個数</th>
+      <th class="purchase_amount">小計</th>
+     </tr>
+    </thead>
+
+    <tbody>
+     <% @order.order_details.each do |order_detail| %>
+     <tr>
+      <!-- 商品 -->
+      <td><%= order_detail.item.name %></td>
+
+      <!-- 単価（税込） -->
+      <td>
+       <%= order_detail.item.with_tax_price.to_s(:delimited) %>
+      </td>
+
+      <!-- 個数 -->
+      <td><%= order_detail.quantity %></td>
+
+      <!-- 小計 -->
+      <td><%= order_detail.purchase_amount.to_s(:delimited) %></td>
+     </tr>
+     <% end %>
+
+    </tbody>
+   </table>
+  </div>
+
  </div>
 </div>
