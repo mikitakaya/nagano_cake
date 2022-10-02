@@ -33,14 +33,31 @@
     margin-right: 5%;
    }
 
-   .cart_items {
-    margin-bottom: 100px;
-   }
-
    label {
     font-weight: bold;
     width: 70px;
     margin-right: 20px;
+   }
+
+   .btn-success {
+    margin: 5% 0 10%;
+   }
+   /* タブレット横置きサイズ（1024px）以下の際に適用される設定 */
+   @media screen and (max-width:1024px) {
+    .table1 {
+     margin-bottom: 5%;
+    }
+   }
+
+   /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
+   @media screen and (max-width:768px) {
+    h3 {
+     font-size: 20px;
+    }
+
+    table, .payment, .address, .btn-success {
+     font-size: 13px;
+    }
    }
   </style>
 
@@ -111,7 +128,7 @@
     </table>
    </div>
 
-   <div class="payment", style="margin-bottom: 20px;">
+   <div class="payment", style="margin: 40px 0 20px;">
     <label for="payment_method">支払方法</label>
     <%= @order.payment_method_i18n %>
    </div>
