@@ -1,13 +1,19 @@
 class Public::OrdersController < ApplicationController
+  # def destroy
+  #  order = Order.find(params[:id])
+  #  order.destroy
+  #  redirect_to '/orders'
+  # end
+
   # 注文情報入力画面(支払方法・配送先の選択)
   def new
    # Viewへ渡すためのインスタンス変数に空のModelオブジェクトを生成する
    @order = Order.new
   end
 
-  # 注文履歴画面
+  # 注文履歴一覧画面
   def index
-   @orders = Order.all
+   @orders = current_customer.orders
   end
 
   # 注文履歴詳細画面
@@ -33,7 +39,7 @@ class Public::OrdersController < ApplicationController
     # 購入時価格（税込）にカート内商品の小計を代入する
     @order_detail.purchase_amount = cart_item.subtotal
     # 注文詳細IDに注文IDを紐付ける
-    @order_detail.id = @order.id
+    @order_detail.order_id = @order.id
     # 注文詳細を保存する
     @order_detail.save
    end
