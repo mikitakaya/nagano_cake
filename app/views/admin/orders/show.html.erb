@@ -24,12 +24,12 @@
 
    <div class="field">
     <label for="customer_full_name">購入者</label>
-    <%= link_to @order.customer.full_name, admin_top_path %>
+    <%= link_to @order.customer.full_name, admin_customer_path(customer.id) %>
    </div>
 
    <div class="field">
     <label for="order_datetime">注文日</label>
-    <%= l @order.created_at, format: :short %>
+    <%= @order.created_at.strftime('%Y/%m/%d') %>
    </div>
 
    <div class="field">
@@ -46,13 +46,13 @@
    <%= form_with model: @order, url: admin_order_path(@order.id) do |f| %>
     <div class="field">
      <%= f.label :order_status, "注文ステータス" %>
-     <%= f.select, :order_status, Oder.order_statuses.key.map {|k| [i18n.t("enums.order.order_status.#{k}"),k]} %>
+     <!--%= f.select, :order_status, Oder.order_statuses.key.map {|k| [i18n.t("enums.order.order_status.#{k}"),k]} %>-->
      <%= f.submit "更新", class: "btn btn-success" %>
     </div>
    <% end %>
   </div>
 
-  <div class="col-lg-8">
+  <div class="col-lg-12">
    <table class="table table-inverse">
 
     <thead>
@@ -67,32 +67,32 @@
     </thead>
 
     <tbody style="color: rgba(0, 0, 0, 0.6);">
-     <% @order.each do |order| %>
+     <% @order.order_details.each do |order_detail| %>
       <tr>
        <!-- 商品名 -->
        <td>
-        <%= order.item.name %>
+        <%= order_detail.item.name %>
        </td>
 
        <!-- 単価（税込）-->
        <td>
-        <%= order.item.price.with_tax_price.to_s(:delimited) %>
+        <%= order_detail.item.with_tax_price.to_s(:delimited) %>
        </td>
 
        <!-- 数量 -->
        <td>
-
+        <%= order_detail.quantity %>
        </td>
 
        <!-- 小計 -->
        <td>
-
+        <%= order_detail.purchase_amount.to_s(:delimited) %>
        </td>
 
        <%= form_with model: @order, url: admin_order_path(@order.id) do |f| %>
         <!-- 製作ステータス -->
         <td>
-         <%= f.order_details.select, :crafting_status, Oder_details.crafting_status.key.map {|k| [i18n.t("enums.order_details.crafting_status.#{k}"),k]} %>
+         <!--%= f.order_details.select, :crafting_status, Oder_details.crafting_status.key.map {|k| [i18n.t("enums.order_details.crafting_status.#{k}"),k]} %>-->
         </td>
 
         <!-- 更新ボタン -->
@@ -105,6 +105,24 @@
      <% end %>
     </tbody>
    </table>
+
+   <div class="price">
+    <div class="field">
+     <label for="total">商品合計</label>
+     <%= @total.to_s(:delimited) %>円
+    </div>
+
+    <div class="field">
+     <label for="shipping_fee">送料</label>
+     <%= @shipping_fee %>円
+    </div>
+
+    <div class="field">
+     <label for="bill">請求金額合計</label>
+     <%= @order.bill.to_s(:delimited) %>円
+    </div>
+   </div>
   </div>
+
  </div>
 </div>

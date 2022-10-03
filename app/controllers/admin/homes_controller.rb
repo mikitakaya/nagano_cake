@@ -3,4 +3,5 @@ class Admin::HomesController < ApplicationController
    # ordersテーブルに保存されている全てのデータを取得する
    @orders = Order.page(params[:page])
   end
+
 end
