@@ -11,7 +11,6 @@ class Admin::OrdersController < ApplicationController
     # order_detail.purchase_amountに購入時価格（カートに入れていた商品の小計）が入っている
     @total += order_detail.purchase_amount
    end
-   @customer = Customer.find(params[:id])
   end
 
   def update
@@ -30,6 +29,6 @@ class Admin::OrdersController < ApplicationController
   private
   # 注文データのストロングパラメータ
   def order_params
-   params.require(:order).permit(:order_status, :crafting_status)
+   params.require(:order).permit(:order_status)
   end
 end

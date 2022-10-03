@@ -31,11 +31,6 @@
      make: "製作中"
      manufactured: "製作完了"
 
-   time:
-    formats:
-     default: "%Y/%m/%d %H:%M:%S"
-     short: "%Y/%m/%d"
-
   views:
    pagination:
     next: "Next>"

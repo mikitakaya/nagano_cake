@@ -3,6 +3,12 @@
   <style>
    label {
     font-weight: bold;
+    width: 150px;
+    margin: 8px 0;
+   }
+
+   .customer, .price {
+    font-size: 18px;
    }
 
    .btn-success {
@@ -13,56 +19,138 @@
     color: rgba(0, 0, 0, 0.6);
     background-color: #e6dcdf;
    }
+
+   select {
+    width: 120px;
+    height: 35px;
+    margin-right: 20px;
+   }
+
+   .price {
+    margin-left: 60px;
+   }
+
+   .item {
+    width: 250px;
+   }
+
+   .item_price {
+    width: 140px;
+   }
+
+   .quantity, .purchase_amount {
+    width: 70px;
+   }
+
+   .crafting_status {
+    width: 300px;
+   }
+
+   /* タブレット横置きサイズ（1024px）以下の際に適用される設定 */
+   @media screen and (max-width:1024px) {
+    .price {
+     margin: 20px 0 0;
+    }
+
+    .customer, .price, table {
+     font-size: 15px;
+    }
+
+    select {
+     width: 100px;
+    }
+   }
+
+   /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
+   @media screen and (max-width:768px) {
+    h3 {
+     font-size: 20px;
+    }
+
+    .customer, .price, table {
+     font-size: 13px;
+    }
+
+    label {
+     font-weight: bold;
+     width: 120px;
+     margin: 8px 0;
+    }
+
+    select {
+     width: 75px;
+     margin-bottom: 10px;
+    }
+
+   .item {
+    width: 310px;
+   }
+
+   .item_price {
+    width: 140px;
+   }
+
+   .quantity, .purchase_amount {
+    width: 70px;
+   }
+
+   .crafting_status {
+    width: 130px;
+   }
+   }
+
   </style>
 
   <div class="col-12 mx-auto">
-   <h3 style="padding: 10px 0 30px 10%">
+   <h3 style="padding: 10px 0 2% 10%">
     <span style="background-color: #e6dcdf;">
      注文履歴詳細
     </span>
    </h3>
 
-   <div class="field">
-    <label for="customer_full_name">購入者</label>
-    <%= link_to @order.customer.full_name, admin_customer_path(customer.id) %>
-   </div>
-
-   <div class="field">
-    <label for="order_datetime">注文日</label>
-    <%= @order.created_at.strftime('%Y/%m/%d') %>
-   </div>
-
-   <div class="field">
-    <label for="order_address_name">配送先</label>
-    <%= @order.address %></br>
-    <%= @order.name %>
-   </div>
-
-   <div class="field">
-    <label for="order_payment_method">支払方法</label>
-    <%= @order.payment_method_i18n %>
-   </div>
-
-   <%= form_with model: @order, url: admin_order_path(@order.id) do |f| %>
+   <div class="customer">
     <div class="field">
-     <%= f.label :order_status, "注文ステータス" %>
-     <!--%= f.select, :order_status, Oder.order_statuses.key.map {|k| [i18n.t("enums.order.order_status.#{k}"),k]} %>-->
-     <%= f.submit "更新", class: "btn btn-success" %>
+     <label for="customer_full_name">購入者</label>
+     <%= link_to @order.customer.full_name, admin_customer_path(@order.customer_id) %>
     </div>
-   <% end %>
+
+    <div class="field">
+     <label for="order_datetime">注文日</label>
+     <%= @order.created_at.strftime('%Y/%m/%d') %>
+    </div>
+
+    <div class="field">
+     <label for="order_address_name">配送先</label>
+     〒<%= @order.postal_code %>
+     <%= @order.address %></br>
+     <label></label> <%= @order.name %>
+    </div>
+
+    <div class="field" style="margin-top: 10px;">
+     <label for="order_payment_method">支払方法</label>
+     <%= @order.payment_method_i18n %>
+    </div>
+
+    <%= form_with model: @order, url: admin_order_path(@order.id) do |f| %>
+     <div class="field">
+      <%= f.label :order_status, "注文ステータス" %>
+      <%= f.select :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
+      <%= f.submit "更新", class: "btn btn-success" %>
+     </div>
+    <% end %>
+   </div>
   </div>
 
-  <div class="col-lg-12">
+  <div class="col-lg-8 col-md-12" style="margin-top: 40px;">
    <table class="table table-inverse">
 
     <thead>
      <tr>
-      <th>商品名</th>
-      <th>単価（税込）</th>
-      <th>数量</th>
-      <th>小計</th>
-      <th>製作ステータス</th>
-      <th></th>
+      <th class="item">商品名</th>
+      <th class="item_price">単価（税込）</th>
+      <th class="quantity">数量</th>
+      <th class="purchase_amount">小計</th>
+      <th class="crafting_status">製作ステータス</th>
      </tr>
     </thead>
 
@@ -70,33 +158,30 @@
      <% @order.order_details.each do |order_detail| %>
       <tr>
        <!-- 商品名 -->
-       <td>
+       <td style="padding-top: 20px;">
         <%= order_detail.item.name %>
        </td>
 
        <!-- 単価（税込）-->
-       <td>
+       <td style="padding: 20px;">
         <%= order_detail.item.with_tax_price.to_s(:delimited) %>
        </td>
 
        <!-- 数量 -->
-       <td>
+       <td style="padding: 20px;">
         <%= order_detail.quantity %>
        </td>
 
        <!-- 小計 -->
-       <td>
+       <td style="padding-top: 20px;">
         <%= order_detail.purchase_amount.to_s(:delimited) %>
        </td>
 
-       <%= form_with model: @order, url: admin_order_path(@order.id) do |f| %>
-        <!-- 製作ステータス -->
-        <td>
-         <!--%= f.order_details.select, :crafting_status, Oder_details.crafting_status.key.map {|k| [i18n.t("enums.order_details.crafting_status.#{k}"),k]} %>-->
-        </td>
-
-        <!-- 更新ボタン -->
-        <td>
+       <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id) do |f| %>
+        <td style="padding-top: 20px;">
+         <!-- 製作ステータス -->
+         <%= f.select :crafting_status, OrderDetail.crafting_statuses.keys.map {|k| [I18n.t("enums.order_details.crafting_status.#{k}"), k]} %>
+         <!-- 更新ボタン -->
          <%= f.submit "更新", class: "btn btn-success" %>
         </td>
        <% end %>
@@ -105,7 +190,9 @@
      <% end %>
     </tbody>
    </table>
+  </div>
 
+  <div class="col-lg-4 col-md-12" style="display: flex; justify-content:flex-end; flex-flow: column; bottom: 20px;">
    <div class="price">
     <div class="field">
      <label for="total">商品合計</label>
