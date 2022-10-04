@@ -43,22 +43,23 @@ class Public::CartItemsController < ApplicationController
    @cart_items = current_customer.cart_items.all
 
    # カートの中身を一個ずつ取り出す
-    @cart_items.each do |cart_item|
-     # カート内商品ID ＝　新規追加商品IDだった場合
-     if cart_item.item_id == @cart_item.item_id
-      # カート内商品の数量＋新規追加商品の数量を合算し、new_amountに代入
-      new_amount = cart_item.amount + @cart_item.amount
-      # cart_itemモデルのamountをnew_amountに更新する
-      cart_item.update_attribute(:amount, new_amount)
-      # 作成した新規レコードが、次の処理で保存されないように削除する
-      @cart_item.delete
-     end
+   @cart_items.each do |cart_item|
+    # カート内商品ID ＝　新規追加商品IDだった場合
+    if cart_item.item_id == @cart_item.item_id
+     # カート内商品の数量＋新規追加商品の数量を合算し、new_amountに代入
+     new_amount = cart_item.amount + @cart_item.amount
+     # cart_itemモデルのamountをnew_amountに更新する
+     cart_item.update_attribute(:amount, new_amount)
+     # 作成した新規レコードが、次の処理で保存されないように削除する
+     @cart_item.delete
     end
+   end
 
    # 新規レコードを保存する
    @cart_item.save
    # 全ての処理が終了したのち、カート内商品一覧画面にリダイレクト
    redirect_to cart_items_path
+
   end
 
   # 小計を求めるメソッド
