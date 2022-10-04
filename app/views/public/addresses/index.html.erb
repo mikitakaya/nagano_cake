@@ -109,38 +109,44 @@
 
   <div class="col-lg-10 col-md-12">
    <div class="address_index">
-    <table>
-     <thead>
-      <tr>
-       <th>郵便番号</th>
-       <th>住所</th>
-       <th>宛名</th>
-       <th></th>
-      </tr>
-     </thead>
+    <!-- @addressesが空の場合 -->
+    <% if @addresses.empty? %>
+    <!-- 配送先一覧テーブルは非表示にする -->
+    <% else%>
+    <!-- @addressesがある場合、以下を表示する -->
+     <table>
+      <thead>
+       <tr>
+        <th>郵便番号</th>
+        <th>住所</th>
+        <th>宛名</th>
+        <th></th>
+       </tr>
+      </thead>
 
-　   <tbody style="color: rgba(0, 0, 0, 0.6);">
-　    <% @addresses.each do |address| %>
-　    <tr>
-　     <!-- 郵便番号 -->
-　     <td class="address"><%= address.postal_code %></td>
+ 　    <tbody style="color: rgba(0, 0, 0, 0.6);">
+ 　     <% @addresses.each do |address| %>
+ 　     <tr>
+ 　      <!-- 郵便番号 -->
+ 　      <td class="address"><%= address.postal_code %></td>
 
-　     <!-- 住所 -->
-　     <td class="address"><%= address.address %></td>
+ 　      <!-- 住所 -->
+ 　      <td class="address"><%= address.address %></td>
 
-　     <!-- 宛名 -->
-　     <td class="address"><%= address.name %></td>
+  　     <!-- 宛名 -->
+  　     <td class="address"><%= address.name %></td>
 
-       <td class="actions">
-        <!-- 編集ボタン -->
-        <%= link_to "編集する", edit_address_path(address.id), class: "btn btn-success" %>
-        <!-- 削除ボタン -->
-        <%= link_to "削除する", address_path(address.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
-       </td>
-　    </tr>
-　    <% end %>
-　   </tbody>
-    </table>
+        <td class="actions">
+         <!-- 編集ボタン -->
+         <%= link_to "編集する", edit_address_path(address.id), class: "btn btn-success" %>
+         <!-- 削除ボタン -->
+         <%= link_to "削除する", address_path(address.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+        </td>
+ 　     </tr>
+ 　     <% end %>
+ 　    </tbody>
+     </table>
+    <% end %>
    </div>
   </div>
 

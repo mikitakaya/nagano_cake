@@ -3,7 +3,7 @@ class Public::AddressesController < ApplicationController
    # Viewのform_withへ渡すための「空のモデル」を生成する
    @address = Address.new
    # 全ての配送先データを取得する
-   @addresses = Address.all
+   @addresses = current_customer.addresses.all
    # binding.pry
   end
 

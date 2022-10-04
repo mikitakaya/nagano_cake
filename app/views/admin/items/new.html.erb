@@ -1,8 +1,13 @@
 <div class="container">
  <div class="row">
   <style>
+   .field_with_errors {
+    display: contents;
+   }
+
    label {
     width: 140px;
+    vertical-align: top;
    }
 
    select, input, textarea {
@@ -51,6 +56,15 @@
      商品新規登録
     </span>
    </h3>
+
+   <% if @item.errors.any? %>
+    <%= @item.errors.count %>件のエラーが発生しました
+    <ul>
+     <% @item.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+     <% end %>
+    </ul>
+   <% end %>
   </div>
 
   <div class="mx-auto col-lg-8 col-md-10">
@@ -73,7 +87,7 @@
 
     <div class="field">
      <label for="admin_item_genre">ジャンル</label>
-     <%= f.collection_select(:genre_id, @genres, :id, :name, {prompt: "-- 選択してください --"} ) %>
+     <%= f.collection_select :genre_id, @genres, :id, :name, {prompt: "-- 選択してください --"} %>
     </div>
 
     <div class="field">

@@ -8,6 +8,12 @@ class Item < ApplicationRecord
  # item（1）はorder_detail（N）を複数持っている
  has_many :order_details
 
+ validates :image, presence: true
+ validates :name, presence: true
+ validates :introduction, presence: true
+ validates :genre_id, presence: true
+ validates :price, presence: true
+
  enum is_active: { active: true, no_active: false }
 
  # 消費税を求めるメソッド

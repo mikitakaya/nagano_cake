@@ -15,9 +15,15 @@ class Admin::ItemsController < ApplicationController
    # データを受け取り新規登録するためのインスタンス作成
    @item = Item.new(item_params)
    # データをデータベースに保存する
-   @item.save
-   # 商品詳細画面にリダイレクト
-   redirect_to admin_item_path(@item.id)
+   if @item.save
+    # 商品詳細画面にリダイレクト
+    redirect_to admin_item_path(@item.id)
+   # 保存に失敗した場合
+   else
+    # 商品新規登録画面を再表示
+    @genres = Genre.all
+    render :new
+   end
   end
 
   def show
