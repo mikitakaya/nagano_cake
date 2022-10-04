@@ -85,6 +85,15 @@
      </span>
     </h3>
 
+    <% if @address.errors.any? %>
+     <%= @address.errors.count %>件のエラーが発生しました
+      <ul>
+       <% @address.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+       <% end %>
+      </ul>
+    <% end %>
+
     <%= form_with model: @address, url: addresses_path, method: :post do |f| %>
      <div class="field">
       <%= f.label :postal_code, "郵便番号（ハイフンなし）" %>

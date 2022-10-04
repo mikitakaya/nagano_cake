@@ -18,9 +18,14 @@ class Public::AddressesController < ApplicationController
    # customer_idはログイン中のカスタマーIDと定義する
    @address.customer_id = current_customer.id
    # データをデータベースに保存する
-   @address.save
-   # 配送先新規登録後、配送先登録／一覧にリダイレクト
-   redirect_to addresses_path
+   if @address.save
+    # 配送先新規登録後、配送先登録／一覧にリダイレクト
+    redirect_to addresses_path
+   else
+    # 全ての配送先データを取得する
+    @addresses = current_customer.addresses.all
+    render :index
+   end
   end
 
   def update
