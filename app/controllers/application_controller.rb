@@ -12,4 +12,19 @@ class ApplicationController < ActionController::Base
   end
  end
 
+ # サインアウト後のリダイレクト先を設定
+ def after_sign_out_path_for(resource_or_scope)
+  # 管理者の場合
+  if resource_or_scope == :admin
+   # 管理者ログイン画面
+   new_admin_session_path
+  # 顧客の場合
+  elsif resource_or_scope == :public
+   # ルートパス
+   root_path
+  else
+   root_path
+  end
+ end
+
 end
