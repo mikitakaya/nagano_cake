@@ -3,6 +3,7 @@ class Public::OrdersController < ApplicationController
   def new
    # Viewへ渡すためのインスタンス変数に空のModelオブジェクトを生成する
    @order = Order.new
+   @addresses = current_customer.addresses
   end
 
   # 注文履歴一覧画面
