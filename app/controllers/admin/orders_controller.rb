@@ -16,7 +16,14 @@ class Admin::OrdersController < ApplicationController
   def update
    # レコードを1件だけ取得
    @order = Order.find(params[:id])
+   # 更新する
    @order.update(order_params)
+
+   # 注文ステータスが「入金確認（deposited）」の場合
+   if @order.order_status == "deposited"
+    # 全ての製作ステータスを「製作待ち（wait）」に更新する
+    @order.order_details.update_all(crafting_status: "wait")
+   end
    # 注文履歴詳細にリダイレクト
    redirect_to admin_order_path(@order.id)
   end
