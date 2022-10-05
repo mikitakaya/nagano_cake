@@ -60,6 +60,12 @@
     </span>
    </h3>
 
+   <% if @errors %>
+    <h5 style="margin-bottom: 20px;">
+     <%= @errors %>
+    </h5>
+   <% end %>
+
    <!-- 注文情報確認画面に情報を送るため、URLはconfirm_pathにする -->
    <%= form_with model: @order, url: confirm_path, local: true do |f| %>
     <div class="payment">

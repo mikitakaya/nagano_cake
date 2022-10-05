@@ -104,6 +104,11 @@ class Public::OrdersController < ApplicationController
     @order.address = params[:order][:address]
     # 新たな配送先の宛名
     @order.name = params[:order][:name]
+    if @order.postal_code && @order.address && @order.name
+     @addresses = current_customer.addresses
+     @errors = "お届け先が未入力です"
+     render :new
+    end
    end
   end
 

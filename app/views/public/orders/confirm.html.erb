@@ -42,6 +42,7 @@
    .btn-success {
     margin: 5% 0 10%;
    }
+
    /* タブレット横置きサイズ（1024px）以下の際に適用される設定 */
    @media screen and (max-width:1024px) {
     .table1 {
@@ -127,7 +128,9 @@
      </tbody>
     </table>
    </div>
+  </div>
 
+  <div class="col-12" style="margin-top: 30px">
    <div class="payment", style="margin: 40px 0 20px;">
     <label for="payment_method">支払方法</label>
     <%= @order.payment_method_i18n %>
