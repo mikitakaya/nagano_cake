@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+ 
 
  private
  # サインイン後のリダイレクト先を指定
