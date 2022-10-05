@@ -60,22 +60,27 @@
    </div>
 
    <div class="field" style="margin-top: 20px;">
+    <!-- 商品のステータスが販売中（active）の場合 -->
     <% if @item.is_active == "active" %>
-     <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
-      <!-- どの商品を何個カートに追加するか -->
-      <!-- customer_idというキーに対して、ログイン中のカスタマーIDを渡す -->
-      <%= f.hidden_field :customer_id, :value => @customer_id %>
-      <!-- itemというキーに対して、商品idを渡す -->
-      <%= f.hidden_field :item_id, :value => @item.id %>
-      <!-- amountというキーに対して、個数（1〜10）を渡す -->
-      <%= f.select :amount, *[1..10], {prompt: "個数選択"}, class: "select" %>
-      <%= f.submit "カートに入れる", class: "btn btn-success" %>
+    <!-- ログイン済み顧客の場合、以下を表示する -->
+     <% if customer_signed_in? %>
+      <!-- 個数選択のプルダウンと、カートに入れるボタンを表示する -->
+      <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
+       <!-- customer_idというキーに対して、ログイン中のカスタマーIDを渡す -->
+       <%= f.hidden_field :customer_id, :value => current_customer.id %>
+       <!-- itemというキーに対して、商品idを渡す -->
+       <%= f.hidden_field :item_id, :value => @item.id %>
+       <!-- amountというキーに対して、個数（1〜10）を渡す -->
+       <%= f.select :amount, *[1..10], {prompt: "個数選択"}, class: "select" %>
+       <%= f.submit "カートに入れる", class: "btn btn-success" %>
+      <% end %>
      <% end %>
+    <!-- 商品のステータスが売切れ（no_active）の場合 -->
     <%else%>
+     <!-- 「売切れ」を表示する -->
      <h5 style="font-weight: bold;">売切れ</h5>
     <% end %>
    </div>
-
   </div>
 
  </div>

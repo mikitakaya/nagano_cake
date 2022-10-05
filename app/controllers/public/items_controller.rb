@@ -10,7 +10,6 @@ class Public::ItemsController < ApplicationController
    # 登録済みのデータを取得する
    @item = Item.find(params[:id])
    @cart_item = CartItem
-   @customer_id = current_customer.id
   end
 
   private
