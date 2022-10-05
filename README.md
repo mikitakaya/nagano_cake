@@ -257,8 +257,8 @@ cloud9
 ### 【管理者側】
 * ECサイトのトップページのURLに「/admin/sign_in」を付け足し、管理者用のログインページへ移動する
 * 下記情報でログインする（nagano_cake/db/seeds.rbに記述）
-　　　　　*　email: kannri@k.jp
-　　　　　*　password: kannripass
+  * email: kannri@k.jp
+  * password: kannripass
 
 * 商品一覧ページ右上の「＋」ボタンを押下すると、商品新規登録ページへ画面遷移する
 * 商品登録後は、登録商品の詳細ページへ遷移する
@@ -269,4 +269,4 @@ cloud9
 * 会員一覧→会員詳細ページにて、顧客情報の編集や会員ステータスの切替が可能
 
 # 作成者
-高屋未来（https://github.com/mikitakaya）
+高屋未来（ https://github.com/mikitakaya ）
