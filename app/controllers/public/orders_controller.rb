@@ -1,4 +1,6 @@
 class Public::OrdersController < ApplicationController
+ before_action :authenticate_customer!
+
   # 注文情報入力画面(支払方法・配送先の選択)
   def new
    # Viewへ渡すためのインスタンス変数に空のModelオブジェクトを生成する
@@ -118,12 +120,6 @@ class Public::OrdersController < ApplicationController
   def with_tax_price
    (price * 1.1).floor
   end
-
-  # def destroy
-  #  @order = Order.find(params[:id])
-  #  @order.destroy
-  #  redirect_to '/orders'
-  # end
 
   private
   # オーダーデータのストロングパラメータ

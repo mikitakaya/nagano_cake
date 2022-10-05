@@ -1,4 +1,6 @@
 class Public::CartItemsController < ApplicationController
+ before_action :authenticate_customer!
+
   def index
    # ログインカスタマーのカート内商品データを全て取得する
    @cart_items = current_customer.cart_items.all

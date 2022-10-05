@@ -1,4 +1,6 @@
 class Admin::CustomersController < ApplicationController
+ before_action :authenticate_admin!
+
   def index
    # customersテーブルに保存されている全てのデータを取得する
    @customers = Customer.page(params[:page])

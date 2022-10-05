@@ -1,4 +1,6 @@
 class Admin::ItemsController < ApplicationController
+ before_action :authenticate_admin!
+
   def index
    # itemsテーブルに保存されている全てのデータを取得する
    @items = Item.page(params[:page])

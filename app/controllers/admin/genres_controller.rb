@@ -1,4 +1,6 @@
 class Admin::GenresController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
    # Viewのform_withへ渡すための「空のモデル」を生成する
    @genre = Genre.new

@@ -1,4 +1,6 @@
 class Public::ItemsController < ApplicationController
+ before_action :authenticate_customer!, except: [:index, :show]
+
   def index
    # itemsテーブルに保存されている全てのデータを取得する
    @items = Item.all

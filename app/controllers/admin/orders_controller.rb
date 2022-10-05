@@ -1,4 +1,6 @@
 class Admin::OrdersController < ApplicationController
+ before_action :authenticate_admin!
+
   def show
    # レコードを1件だけ取得
    @order = Order.find(params[:id])

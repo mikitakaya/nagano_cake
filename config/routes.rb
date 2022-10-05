@@ -22,7 +22,6 @@ Rails.application.routes.draw do
     # public/orders
     post 'orders/confirm' => "orders#confirm", as: "confirm"
     get 'orders/complete' => "orders#complete", as: "complete"
-    # delete 'orders/:id' => 'orders#destroy', as: 'destroy_order'
     resources :orders, only: [:new, :index, :show, :create]
 
     # public/addresses

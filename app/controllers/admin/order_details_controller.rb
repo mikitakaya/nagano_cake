@@ -1,5 +1,4 @@
 class Admin::OrderDetailsController < ApplicationController
-
   def update
    # レコードを1件だけ取得
    @order_detail = OrderDetail.find(params[:id])
