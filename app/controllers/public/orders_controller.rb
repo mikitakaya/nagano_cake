@@ -62,7 +62,7 @@ class Public::OrdersController < ApplicationController
   # 注文情報確認画面
   def confirm
    # 全てのカート内商品
-   @cart_items = CartItem.all
+   @cart_items = current_customer.cart_items
    @shipping_fee = 800
    @total = 0
 
