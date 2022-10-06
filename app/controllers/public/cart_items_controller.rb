@@ -61,7 +61,6 @@ class Public::CartItemsController < ApplicationController
    @cart_item.save
    # 全ての処理が終了したのち、カート内商品一覧画面にリダイレクト
    redirect_to cart_items_path
-
   end
 
   # 小計を求めるメソッド
